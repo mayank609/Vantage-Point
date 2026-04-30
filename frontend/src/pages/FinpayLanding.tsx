@@ -192,10 +192,7 @@ const Hero: React.FC = () => {
       <div
         aria-hidden
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(115deg, #0E2A38 0 1px, transparent 1px 36px)",
-        }}
+        style={{ backgroundImage: "radial-gradient(circle, rgba(14,42,56,0.55) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
       />
            <div className="relative mx-auto max-w-7xl px-6 lg:px-10 pt-16 lg:pt-24 pb-20 grid lg:grid-cols-2 gap-12 items-center">
         <motion.div
@@ -503,10 +500,7 @@ const MaximizeReturns: React.FC = () => {
       <div
         aria-hidden
         className="absolute inset-0 opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(115deg, #ffffff 0 1px, transparent 1px 36px)",
-        }}
+        style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
       />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-20">
         <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">
@@ -629,10 +623,7 @@ const Pricing: React.FC = () => {
             <div
               aria-hidden
               className="absolute inset-0 opacity-25 pointer-events-none"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(115deg, #ffffff 0 1px, transparent 1px 28px)",
-              }}
+              style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
             />
             <div className="relative text-2xl lg:text-3xl font-semibold">
               Premium
@@ -662,10 +653,7 @@ const CtaBanner: React.FC = () => {
           <div
             aria-hidden
             className="absolute inset-0 opacity-[0.06] pointer-events-none"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(115deg, #ffffff 0 1px, transparent 1px 36px)",
-            }}
+            style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
           />
           <div className="relative grid lg:grid-cols-2 gap-8 items-center">
             <div>

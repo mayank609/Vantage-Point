@@ -29,11 +29,11 @@ const Contact: React.FC = () => {
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.458933230485!2d-84.2882194!3d34.0537021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f57422b7c6c7b7%3A0x6a12b9a7f34c8a1!2s5865%20North%20Point%20Pkwy%20%23250%2C%20Alpharetta%2C%20GA%2030022%2C%20USA!5e0!3m2!1sen!2sin!4v1714400000000!5m2!1sen!2sin"
     },
     {
-      country: "United States",
-      city: "Hawley, PA",
-      type: "Regional Office",
-      address: "8, Silk Mill Dr., Ste 208, Hawley, PA 18428",
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.824244243685!2d-75.1764669!3d41.4746654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c524039b2b0015%3A0x6b77c5980000000!2s8%20Silk%20Mill%20Dr%20%23208%2C%20Hawley%2C%20PA%2018428%2C%20USA!5e0!3m2!1sen!2sin!4v1714400000000!5m2!1sen!2sin"
+      country: "Canada",
+      city: "Stoney Creek, ON",
+      type: "VPC Partners Inc",
+      address: "9A Glenhollow Drive, Stoney Creek, ON L8J 3T9",
+      mapUrl: "https://maps.google.com/maps?q=9A+Glenhollow+Drive,+Stoney+Creek,+ON+L8J+3T9,+Canada&hl=en&z=15&output=embed"
     },
     {
       country: "India",
@@ -57,7 +57,15 @@ const Contact: React.FC = () => {
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-[#0E2A38] py-20 lg:py-24">
-        <div aria-hidden className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(115deg, #ffffff 0 1px, transparent 1px 36px)" }} />
+        <div aria-hidden className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        {/* Hero atmosphere image */}
+        <img
+          src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=2070&q=80"
+          alt="professionals in discussion"
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.18] mix-blend-luminosity pointer-events-none select-none"
+        />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0E2A38] via-[#0E2A38]/60 to-transparent pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10 text-center text-white">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-6 border border-white/10">
             Direct Access

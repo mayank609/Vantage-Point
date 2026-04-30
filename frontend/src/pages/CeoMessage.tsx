@@ -24,7 +24,15 @@ const CeoMessage: React.FC = () => {
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-[#0E2A38] py-28 lg:py-36">
-        <div aria-hidden className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(115deg, #ffffff 0 1px, transparent 1px 36px)" }} />
+        <div aria-hidden className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        {/* Hero atmosphere image */}
+        <img
+          src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=2070&q=80"
+          alt="executive leadership"
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.18] mix-blend-luminosity pointer-events-none select-none"
+        />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0E2A38] via-[#0E2A38]/60 to-transparent pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10 text-center text-white">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-[#0B74B0] text-[10px] font-bold tracking-[0.2em] uppercase mb-6 border border-white/10">
             Leadership Perspective
@@ -51,9 +59,9 @@ const CeoMessage: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#0B74B0]/20 to-transparent rounded-full blur-xl opacity-50" />
                     <div className="h-24 w-24 rounded-full overflow-hidden mx-auto border-2 border-white shadow-md relative">
                       <img 
-                        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" 
+                        src="/DSC07992.jpg" 
                         alt="Krish Subbiah" 
-                        className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                   </div>
@@ -104,7 +112,7 @@ const CeoMessage: React.FC = () => {
 
                 <div className="mt-12 pt-8 border-t border-black/5 flex items-center gap-4">
                   <div className="h-12 w-12 rounded-full overflow-hidden border border-[#0B74B0]/20">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" className="w-full h-full object-cover grayscale" alt="" />
+                    <img src="/DSC07992.jpg" className="w-full h-full object-cover object-top" alt="Krish Subbiah" />
                   </div>
                   <div>
                     <div className="font-bold text-[#0E2A38] text-lg">Krish Subbiah</div>
@@ -226,7 +234,7 @@ const CeoMessage: React.FC = () => {
       <section className="bg-[#F4F4F7] pb-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="relative overflow-hidden rounded-[40px] bg-[#0E2A38] text-white p-12 lg:p-20 text-center shadow-2xl">
-            <div aria-hidden className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(115deg, #ffffff 0 1px, transparent 1px 36px)" }} />
+            <div aria-hidden className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
               <h3 className="font-[Manrope] font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 tracking-tight">Ready to Work Together?</h3>
               <p className="text-white/60 mb-10 text-lg sm:text-xl max-w-2xl mx-auto font-medium leading-relaxed">

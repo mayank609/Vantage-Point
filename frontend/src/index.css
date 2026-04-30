@@ -62,15 +62,187 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+
+  /* === Gradient Text === */
   .text-brand-gradient {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, #0B74B0 0%, #75479C 100%);
   }
+
+  .text-gradient-animated {
+    background: linear-gradient(90deg, #0B74B0 0%, #75479C 50%, #0B74B0 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-x 4s ease infinite;
+  }
+
+  /* === Hover Float Card === */
+  .hover-float-card {
+    @apply relative overflow-hidden transition-all duration-500 ease-out;
+    transform: translateY(0);
+  }
+
+  .hover-float-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(120deg, rgba(11, 116, 176, 0.25), rgba(117, 71, 156, 0.25), rgba(255, 137, 43, 0.25));
+    filter: blur(14px);
+    transition: opacity 0.45s ease;
+  }
+
+  .hover-float-card::after {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 220px;
+    height: 220px;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(11, 116, 176, 0.14) 0%, rgba(117, 71, 156, 0.1) 45%, rgba(255, 137, 43, 0) 72%);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    transform: scale(0.9);
+  }
+
+  .hover-float-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 26px 45px -24px rgba(14, 42, 56, 0.45);
+  }
+
+  .hover-float-card:hover::before,
+  .hover-float-card:hover::after {
+    opacity: 1;
+  }
+
+  .hover-float-card:hover::after {
+    transform: scale(1.08);
+  }
+
+  .hover-float-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === Card Glow === */
+  .card-glow {
+    transition: box-shadow 0.3s ease;
+  }
+  .card-glow:hover {
+    box-shadow: 0 0 0 1px rgba(11, 116, 176, 0.15), 0 20px 50px -15px rgba(11, 116, 176, 0.2);
+  }
+
+  /* === Shine Button === */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg);
+  }
+  .btn-shine:hover::after {
+    animation: shine 0.7s ease forwards;
+  }
+
+  /* === Animate blob === */
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  /* === Animate marquee === */
+  .animate-marquee {
+    animation: marquee-left 35s linear infinite;
+  }
+  .animate-marquee-fast {
+    animation: marquee-left 20s linear infinite;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-right 35s linear infinite;
+  }
+
+  /* === Animate float === */
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  /* === Spin slow === */
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+}
+
+/* ── Keyframes ── */
+@keyframes blob {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(30px, -50px) scale(1.1); }
+  66%  { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% center; }
+  50%       { background-position: 100% center; }
+}
+
+@keyframes shine {
+  to { left: 125%; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
 }
 
 @layer base {
   html {
     font-size: 100%;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F4F4F7;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #0B74B0, #75479C);
+    border-radius: 99px;
   }
 
   * {

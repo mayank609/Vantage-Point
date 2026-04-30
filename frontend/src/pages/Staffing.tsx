@@ -43,21 +43,44 @@ const Staffing: React.FC = () => {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#F4F4F7]">
-        <div aria-hidden className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(115deg, #0E2A38 0 1px, transparent 1px 36px)" }} />
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-10 pt-20 pb-16 text-center">
-          <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Staffing Services</div>
-          <h1 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[64px] leading-[1.05]">
-            We help you fill exceptional roles
-            <br />
-            that others find rather challenging.
-          </h1>
-          <p className="mt-6 text-[#0E2A38]/60 max-w-xl mx-auto text-sm leading-relaxed">
-            From IT engineers to C-suite executives — our personalized, consultative approach connects you with talent that drives real results.
-          </p>
-          <Link to="/contact" className="mt-8 inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-medium transition shadow-sm">
-            Let's Talk <ArrowUpRight size={16} />
-          </Link>
+      <section className="relative overflow-hidden bg-[#F4F4F7] py-16 lg:py-20">
+        <div aria-hidden className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(14,42,56,0.55) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        <div aria-hidden className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#75479C]/8 rounded-full blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3" />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text */}
+            <div>
+              <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Staffing Services</div>
+              <h1 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] mb-6">
+                We help you fill exceptional roles that others find rather challenging.
+              </h1>
+              <p className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
+                From IT engineers to C-suite executives — our personalized, consultative approach connects you with talent that drives real results.
+              </p>
+              <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25">
+                Let's Talk <ArrowUpRight size={16} />
+              </Link>
+            </div>
+            {/* Right: Image */}
+            <div className="relative rounded-3xl overflow-hidden h-[340px] lg:h-[420px] shadow-2xl shadow-black/15">
+              <img
+                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80"
+                alt="Professional staffing and talent acquisition"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#75479C]/20 to-[#0E2A38]/40" />
+              {/* Floating badge */}
+              <div className="absolute bottom-5 left-5 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg flex items-center gap-3">
+                <div className="h-9 w-9 rounded-xl bg-[#EBF4F9] grid place-items-center text-[#0B74B0] shrink-0">
+                  <ArrowUpRight size={18} />
+                </div>
+                <div>
+                  <div className="text-[#0E2A38] font-bold text-xs">Top 3% Talent</div>
+                  <div className="text-[#0E2A38]/50 text-[10px]">48–72 hr placement · 90-day guarantee</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -95,7 +118,7 @@ const Staffing: React.FC = () => {
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="relative overflow-hidden rounded-3xl bg-[#0B74B0] text-white p-8 lg:p-12 text-center">
-            <div aria-hidden className="absolute inset-0 opacity-25 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(115deg, #ffffff 0 1px, transparent 1px 28px)" }} />
+            <div aria-hidden className="absolute inset-0 opacity-25 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
               <h3 className="font-[Manrope] font-semibold text-3xl sm:text-4xl mb-4">Got a project or a partnership in mind?</h3>
               <p className="text-white/75 mb-8 text-sm max-w-md mx-auto">
