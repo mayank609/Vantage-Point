@@ -1,0 +1,134 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Cpu, Brain, ShoppingCart, Code, Cloud, Settings, Users } from "lucide-react";
+import TiltCard from "./TiltCard";
+
+const CoreServices: React.FC = () => {
+  const services = [
+    {
+      title: "Professional Services",
+      description: "Expert consulting and implementation for enterprise platforms, driving transformation and efficiency.",
+      icon: Settings,
+      technologies: ["Consulting", "Implementation", "Managed Services"],
+      to: "/services"
+    },
+    {
+      title: "Oracle Solutions",
+      description: "Comprehensive Oracle Cloud integration, optimization, and support to streamline your operations.",
+      icon: Cloud,
+      technologies: ["Oracle Cloud", "Integration", "Optimization"],
+      to: "/services"
+    },
+    {
+      title: "Workday HCM",
+      description: "Unlock the full potential of Workday with our dedicated Human Capital Management consulting and support.",
+      icon: Users,
+      technologies: ["HCM", "Consulting", "Support"],
+      to: "/services"
+    },
+    {
+      title: "AI Integration",
+      description: "Adopt artificial intelligence to automate processes, gain actionable insights, and stay ahead of the curve.",
+      icon: Brain,
+      technologies: ["AI", "Automation", "Machine Learning"],
+      to: "/services"
+    }
+  ];
+
+  return (
+    <section className="relative py-16 lg:py-24 bg-gradient-to-br from-[#F4F4F7] via-white to-[#EBF4F9]/50 overflow-hidden">
+      {/* Animated Background Blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-brand-blue/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-violet/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
+        <div className="absolute -bottom-32 left-20 w-96 h-96 bg-brand-orange/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
+      </div>
+
+      <div className="container mx-auto px-6 lg:px-10 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-4xl mx-auto mb-12 lg:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/50 backdrop-blur-sm border border-[#0B74B0]/20 rounded-full mb-5 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#0B74B0] animate-pulse" />
+            <span className="text-[#0B74B0] font-semibold text-xs tracking-[0.2em] uppercase">Our Expertise</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0E2A38] mb-4 leading-[1.1] tracking-tight font-[Manrope]">
+            Our Core <span className="text-[#0B74B0]">Technology Services</span>
+          </h2>
+          <p className="text-sm text-[#0E2A38]/70 leading-relaxed">
+            From strengthening your digital presence to automating your workflow, we offer technology services for end-to-end digital transformation.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {services.map((service, index) => (
+            <Link key={service.title} to={service.to} className="relative group h-full block">
+              {/* Layering Effect */}
+              <div className="absolute -inset-3 bg-gradient-to-br from-[#0B74B0]/20 to-[#75479C]/20 rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 -z-10 group-hover:scale-110" />
+              
+              {/* Decorative background layers */}
+              <div className="absolute inset-0 bg-[#0B74B0]/5 rounded-3xl translate-x-3 translate-y-3 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4 -z-10" />
+              <div className="absolute inset-0 bg-[#75479C]/5 rounded-3xl -translate-x-3 -translate-y-3 transition-transform duration-500 group-hover:-translate-x-4 group-hover:-translate-y-4 -z-10" />
+
+              <TiltCard className="h-full">
+                <div
+                  className="relative p-6 lg:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/50 shadow-sm hover:shadow-lg transition-all duration-500 h-full flex flex-col justify-between overflow-hidden"
+                  style={{ transitionDelay: `${index * 0.1}s` }}
+                >
+                  {/* Subtle corner accent */}
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-[#0B74B0]/5 to-transparent rounded-bl-full" />
+                  
+                  <div className="space-y-5 relative z-10">
+                    {/* Icon */}
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0B74B0]/10 to-[#75479C]/10 flex items-center justify-center group-hover:rotate-6 transition-transform duration-300 shadow-inner">
+                      <service.icon className="w-7 h-7 text-[#0B74B0]" />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl lg:text-3xl font-semibold text-[#0E2A38] group-hover:text-[#0B74B0] transition-colors font-[Manrope] tracking-tight">
+                      {service.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[#0E2A38]/70 leading-relaxed text-sm">
+                      {service.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="space-y-3 pt-3">
+                      <p className="text-xs font-semibold text-[#0B74B0] uppercase tracking-[0.2em]">
+                        Key Focus Areas
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {service.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1.5 text-xs font-medium bg-white shadow-sm rounded-xl border border-black/10 text-[#0E2A38] hover:border-[#0B74B0]/30 hover:text-[#0B74B0] transition-all"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CTA Box */}
+                  <div className="mt-8 pt-5 border-t border-black/10 relative z-10 flex justify-end">
+                    <div className="inline-flex items-center gap-2 text-[#0B74B0] font-medium text-sm group-hover:gap-3 transition-all">
+                      Discovery Session
+                      <div className="p-2 bg-[#0B74B0]/10 rounded-xl group-hover:bg-[#0B74B0]/20 transition-colors shadow-sm">
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TiltCard>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CoreServices;
