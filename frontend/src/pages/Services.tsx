@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Users, Cloud, Settings, CheckCircle, ArrowUpRight, ChevronDown, ChevronUp } from "lucide-react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { fadeUp, scaleUp, stagger, viewportOnce } from "../lib/motion";
 
 const Services: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -74,21 +76,23 @@ const Services: React.FC = () => {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text */}
-            <div>
-              <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">What We Offer</div>
-              <h1 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
+            <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
+              <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">What We Offer</motion.div>
+              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
                 End-to-End Professional &amp; Technology Services
-              </h1>
-              <p className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
+              </motion.h1>
+              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
                 From implementing Oracle and Workday to managing your cloud infrastructure — one firm, one point of contact, measurable results.
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25"
-              >
-                Book a Free Consultation <ArrowUpRight size={16} />
-              </Link>
-            </div>
+              </motion.p>
+              <motion.div variants={fadeUp}>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25"
+                >
+                  Book a Free Consultation <ArrowUpRight size={16} />
+                </Link>
+              </motion.div>
+            </motion.div>
             {/* Right: Image */}
             <div className="relative rounded-3xl overflow-hidden h-[340px] lg:h-[420px] shadow-2xl shadow-black/15">
               <img
@@ -115,57 +119,64 @@ const Services: React.FC = () => {
       {/* ── MAIN SERVICES ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 space-y-8">
-          {mainServices.map((svc) => (
-            <div key={svc.title} className="rounded-3xl bg-white border border-black/5 shadow-sm p-8 lg:p-12">
-              <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
-                <div>
-                  <div className="h-11 w-11 rounded-xl bg-[#EBF4F9] grid place-items-center text-[#0B74B0] mb-5">
-                    <svc.icon size={20} />
-                  </div>
-                  <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-2">{svc.tagline}</div>
-                  <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl lg:text-3xl mb-4">{svc.title}</h2>
-                  <p className="text-[#0E2A38]/60 text-sm leading-relaxed mb-7">{svc.desc}</p>
-
-                  <div className="text-[#0E2A38] font-semibold text-sm mb-3">How It Works</div>
-                  <ol className="space-y-2.5">
-                    {svc.process.map((step, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm text-[#0E2A38]/70">
-                        <span className="h-6 w-6 rounded-full bg-[#EBF4F9] text-[#0B74B0] grid place-items-center font-bold text-xs flex-shrink-0">
-                          {i + 1}
-                        </span>
-                        {step}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-3 content-start">
-                  {svc.subs.map((sub) => (
-                    <div key={sub.name} className="rounded-2xl bg-[#EBF4F9] p-4">
-                      <div className="flex items-start gap-2 mb-1.5">
-                        <CheckCircle size={13} className="text-[#0B74B0] flex-shrink-0 mt-0.5" />
-                        <span className="font-semibold text-[#0E2A38] text-sm">{sub.name}</span>
-                      </div>
-                      <p className="text-[#0E2A38]/55 text-xs leading-relaxed pl-5">{sub.desc}</p>
+          <motion.div initial="hidden" whileInView="show" variants={stagger(0.06, 0.12)} viewport={viewportOnce}>
+            {mainServices.map((svc) => (
+              <motion.div
+                key={svc.title}
+                variants={fadeUp}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+                className="rounded-3xl bg-white border border-black/5 shadow-sm p-8 lg:p-12"
+              >
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
+                  <div>
+                    <div className="h-11 w-11 rounded-xl bg-[#EBF4F9] grid place-items-center text-[#0B74B0] mb-5">
+                      <svc.icon size={20} />
                     </div>
-                  ))}
+                    <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-2">{svc.tagline}</div>
+                    <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl lg:text-3xl mb-4">{svc.title}</h2>
+                    <p className="text-[#0E2A38]/60 text-sm leading-relaxed mb-7">{svc.desc}</p>
+
+                    <div className="text-[#0E2A38] font-semibold text-sm mb-3">How It Works</div>
+                    <ol className="space-y-2.5">
+                      {svc.process.map((step, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm text-[#0E2A38]/70">
+                          <span className="h-6 w-6 rounded-full bg-[#EBF4F9] text-[#0B74B0] grid place-items-center font-bold text-xs flex-shrink-0">
+                            {i + 1}
+                          </span>
+                          {step}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-3 content-start">
+                    {svc.subs.map((sub) => (
+                      <div key={sub.name} className="rounded-2xl bg-[#EBF4F9] p-4">
+                        <div className="flex items-start gap-2 mb-1.5">
+                          <CheckCircle size={13} className="text-[#0B74B0] flex-shrink-0 mt-0.5" />
+                          <span className="font-semibold text-[#0E2A38] text-sm">{sub.name}</span>
+                        </div>
+                        <p className="text-[#0E2A38]/55 text-xs leading-relaxed pl-5">{sub.desc}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-3xl px-6 lg:px-10">
-          <div className="text-center mb-10">
+          <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce} className="text-center mb-10">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">FAQ</div>
             <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl">Common Questions</h2>
-          </div>
-          <div className="space-y-3">
+          </motion.div>
+          <motion.div initial="hidden" whileInView="show" variants={stagger(0.06, 0.12)} viewport={viewportOnce} className="space-y-3">
             {faqs.map((faq, i) => (
-              <div key={i} className="rounded-2xl bg-white border border-black/5 overflow-hidden">
+              <motion.div key={i} variants={fadeUp} className="rounded-2xl bg-white border border-black/5 overflow-hidden">
                 <button
                   className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#0E2A38] text-sm hover:bg-black/[0.02] transition"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -181,16 +192,22 @@ const Services: React.FC = () => {
                     {faq.a}
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── CTA ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="relative overflow-hidden rounded-3xl bg-[#0E2A38] text-white p-8 lg:p-12 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={scaleUp}
+            viewport={viewportOnce}
+            className="relative overflow-hidden rounded-3xl bg-[#0E2A38] text-white p-8 lg:p-12 text-center"
+          >
             <div aria-hidden className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
               <h3 className="font-[Manrope] font-semibold text-3xl sm:text-4xl mb-4">Ready to Get Started?</h3>
@@ -199,7 +216,7 @@ const Services: React.FC = () => {
                 Book a Free Call
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

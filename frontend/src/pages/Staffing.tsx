@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { fadeUp, scaleUp, stagger, viewportOnce } from "../lib/motion";
 
 const Staffing: React.FC = () => {
   const divisions = [
@@ -49,18 +51,20 @@ const Staffing: React.FC = () => {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text */}
-            <div>
-              <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Staffing Services</div>
-              <h1 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] mb-6">
+            <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
+              <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Staffing Services</motion.div>
+              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] mb-6">
                 We help you fill exceptional roles that others find rather challenging.
-              </h1>
-              <p className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
+              </motion.h1>
+              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
                 From IT engineers to C-suite executives — our personalized, consultative approach connects you with talent that drives real results.
-              </p>
-              <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25">
-                Let's Talk <ArrowUpRight size={16} />
-              </Link>
-            </div>
+              </motion.p>
+              <motion.div variants={fadeUp}>
+                <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25">
+                  Let's Talk <ArrowUpRight size={16} />
+                </Link>
+              </motion.div>
+            </motion.div>
             {/* Right: Image */}
             <div className="relative rounded-3xl overflow-hidden h-[340px] lg:h-[420px] shadow-2xl shadow-black/15">
               <img
@@ -87,37 +91,50 @@ const Staffing: React.FC = () => {
       {/* ── DIVISIONS ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 space-y-6">
-          {divisions.map((div) => (
-            <div key={div.title} className="rounded-3xl bg-white border border-black/5 shadow-sm p-8 lg:p-10">
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-                <div>
-                  <h2 className="font-[Manrope] font-semibold text-[#0E2A38] text-2xl lg:text-3xl mb-4 tracking-tight">{div.title}</h2>
-                  <p className="text-[#0E2A38]/60 text-sm leading-relaxed mb-6">{div.desc}</p>
-                  <Link to="/contact" className="inline-flex items-center gap-1.5 text-[#0B74B0] text-sm font-medium hover:gap-2.5 transition-all">
-                    Get started <ArrowUpRight size={14} />
-                  </Link>
-                </div>
-                <div>
-                  <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Roles We Fill</div>
-                  <div className="grid sm:grid-cols-2 gap-2">
-                    {div.roles.map((role) => (
-                      <div key={role} className="flex items-center gap-2 rounded-xl bg-[#EBF4F9] px-4 py-2.5">
-                        <CheckCircle size={13} className="text-[#0B74B0] flex-shrink-0" />
-                        <span className="text-sm text-[#0E2A38]/80">{role}</span>
-                      </div>
-                    ))}
+          <motion.div initial="hidden" whileInView="show" variants={stagger(0.06, 0.12)} viewport={viewportOnce}>
+            {divisions.map((div) => (
+              <motion.div
+                key={div.title}
+                variants={fadeUp}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+                className="rounded-3xl bg-white border border-black/5 shadow-sm p-8 lg:p-10"
+              >
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                  <div>
+                    <h2 className="font-[Manrope] font-semibold text-[#0E2A38] text-2xl lg:text-3xl mb-4 tracking-tight">{div.title}</h2>
+                    <p className="text-[#0E2A38]/60 text-sm leading-relaxed mb-6">{div.desc}</p>
+                    <Link to="/contact" className="inline-flex items-center gap-1.5 text-[#0B74B0] text-sm font-medium hover:gap-2.5 transition-all">
+                      Get started <ArrowUpRight size={14} />
+                    </Link>
+                  </div>
+                  <div>
+                    <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Roles We Fill</div>
+                    <div className="grid sm:grid-cols-2 gap-2">
+                      {div.roles.map((role) => (
+                        <div key={role} className="flex items-center gap-2 rounded-xl bg-[#EBF4F9] px-4 py-2.5">
+                          <CheckCircle size={13} className="text-[#0B74B0] flex-shrink-0" />
+                          <span className="text-sm text-[#0E2A38]/80">{role}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* ── CTA ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="relative overflow-hidden rounded-3xl bg-[#0B74B0] text-white p-8 lg:p-12 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={scaleUp}
+            viewport={viewportOnce}
+            className="relative overflow-hidden rounded-3xl bg-[#0B74B0] text-white p-8 lg:p-12 text-center"
+          >
             <div aria-hidden className="absolute inset-0 opacity-25 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
               <h3 className="font-[Manrope] font-semibold text-3xl sm:text-4xl mb-4">Got a project or a partnership in mind?</h3>
@@ -128,7 +145,7 @@ const Staffing: React.FC = () => {
                 Let's Talk
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

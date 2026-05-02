@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Cloud, Settings, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
+import { fadeUp, stagger, viewportOnce } from "../lib/motion";
 
 const CoreServices: React.FC = () => {
   const services = [
@@ -52,10 +53,7 @@ const CoreServices: React.FC = () => {
       <div className="container mx-auto px-6 lg:px-10 relative z-10">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce}
           className="text-center max-w-4xl mx-auto mb-12 lg:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/60 backdrop-blur-sm border border-[#0B74B0]/20 rounded-full mb-5 shadow-sm">
@@ -71,14 +69,14 @@ const CoreServices: React.FC = () => {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <motion.div
+          initial="hidden" whileInView="show" variants={stagger(0.06, 0.14)} viewport={viewportOnce}
+          className="grid md:grid-cols-2 gap-6 lg:gap-8"
+        >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.12 }}
+              variants={fadeUp}
             >
               <Link to={service.to} className="relative group h-full block">
                 {/* Glow layer */}
@@ -146,7 +144,7 @@ const CoreServices: React.FC = () => {
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

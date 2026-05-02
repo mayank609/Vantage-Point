@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useLenis } from "lenis/react";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -9,14 +10,13 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const rawProgress = useMotionValue(0);
+  const scaleX = useSpring(rawProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useLenis(({ scroll, limit }) => {
+    rawProgress.set(limit > 0 ? scroll / limit : 0);
+    setScrolled(scroll > 24);
+  });
 
   const serviceLinks = [
     { label: "Professional Services", to: "/services" },
@@ -35,8 +35,8 @@ const Navbar: React.FC = () => {
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-black/[0.08] shadow-[0_2px_20px_-4px_rgba(14,42,56,0.10)]"
-          : "bg-[#F4F4F7]/80 backdrop-blur-md border-b border-black/5"
+          ? "bg-white/55 backdrop-blur-xl supports-[backdrop-filter]:bg-white/45 border-b border-white/40 shadow-[0_10px_30px_-16px_rgba(14,42,56,0.45)]"
+          : "bg-white/30 backdrop-blur-xl supports-[backdrop-filter]:bg-white/20 border-b border-white/35 shadow-[0_8px_26px_-18px_rgba(14,42,56,0.35)]"
       }`}
     >
       {/* Reading progress bar */}
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
           <img src="/logo.png" alt="Vantage Point Logo" className="h-12 w-auto sm:h-16" />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7 text-sm text-[#0E2A38] font-semibold">
+        <nav className="hidden md:flex items-center gap-7 text-sm text-[#0E2A38] font-bold">
           {/* Services dropdown */}
           <div
             className="relative"
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
                   <Link
                     key={l.label}
                     to={l.to}
-                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#0E2A38] font-semibold hover:bg-[#EBF4F9] hover:text-[#0B74B0] transition-colors"
+                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#0E2A38] font-bold hover:bg-[#EBF4F9] hover:text-[#0B74B0] transition-colors"
                   >
                     <span className="text-[#0B74B0]/40 text-[10px] font-black tabular-nums">0{i + 1}</span>
                     {l.label}
@@ -105,13 +105,13 @@ const Navbar: React.FC = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/contact"
-            className="hidden sm:inline-flex h-9 items-center rounded-full px-5 text-sm text-[#0E2A38] font-semibold hover:bg-black/5 transition"
+            className="hidden sm:inline-flex h-9 items-center rounded-full px-5 text-sm text-[#0E2A38] font-bold hover:bg-black/5 transition"
           >
             Get in Touch
           </Link>
           <Link
             to="/contact"
-            className="btn-shine inline-flex h-9 items-center rounded-full px-6 bg-[#0B74B0] text-white text-sm font-semibold hover:bg-[#096396] transition shadow-md shadow-[#0B74B0]/20"
+            className="btn-shine inline-flex h-9 items-center rounded-full px-6 bg-[#0B74B0] text-white text-sm font-bold hover:bg-[#096396] transition shadow-md shadow-[#0B74B0]/20"
           >
             Let's Talk
           </Link>

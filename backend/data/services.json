@@ -1,0 +1,34 @@
+[
+  {
+    "id": "svc-001",
+    "createdAt": "2024-01-01T10:00:00.000Z",
+    "name": "Talent Acquisition",
+    "category": "Staffing",
+    "description": "Hire top 1% tech, finance, legal, and executive talent. Pre-vetted shortlists in 48–72 hours.",
+    "active": true
+  },
+  {
+    "id": "svc-002",
+    "createdAt": "2024-01-01T10:00:00.000Z",
+    "name": "Cloud & Tech Solutions",
+    "category": "Technology",
+    "description": "Modernize your infrastructure, reduce costs, and future-proof your technology stack with AWS, Azure, and hybrid cloud.",
+    "active": true
+  },
+  {
+    "id": "svc-003",
+    "createdAt": "2024-01-01T10:00:00.000Z",
+    "name": "Managed IT Services",
+    "category": "Technology",
+    "description": "Your complete IT department as a service — 24/7 monitoring, cybersecurity, and compliance at a predictable flat monthly rate.",
+    "active": true
+  },
+  {
+    "id": "svc-004",
+    "createdAt": "2024-01-01T10:00:00.000Z",
+    "name": "Legal Staffing",
+    "category": "Staffing",
+    "description": "Attorney and paralegal placement for law firms and corporate legal departments, including document review and litigation support.",
+    "active": true
+  }
+]

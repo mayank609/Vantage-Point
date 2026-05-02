@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CheckCircle, Settings } from "lucide-react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { fadeUp, scaleUp, stagger, slideLeft, slideRight, fadeIn, viewportOnce } from "../lib/motion";
 
 const ManagedServices: React.FC = () => {
   const capabilities = [
@@ -30,18 +32,20 @@ const ManagedServices: React.FC = () => {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text */}
-            <div>
-              <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Managed Services</div>
-              <h1 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
+            <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
+              <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Managed Services</motion.div>
+              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
                 Full-Service Managed IT Provider
-              </h1>
-              <p className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
+              </motion.h1>
+              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
                 Strategizing and building a complete Information Technology, network, application, infrastructure and security solution — customized to meet your needs.
-              </p>
-              <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25">
-                Let's Talk <ArrowUpRight size={16} />
-              </Link>
-            </div>
+              </motion.p>
+              <motion.div variants={fadeUp}>
+                <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25">
+                  Let's Talk <ArrowUpRight size={16} />
+                </Link>
+              </motion.div>
+            </motion.div>
             {/* Right: Image */}
             <div className="relative rounded-3xl overflow-hidden h-[340px] lg:h-[420px] shadow-2xl shadow-black/15">
               <img
@@ -68,9 +72,15 @@ const ManagedServices: React.FC = () => {
       {/* ── OVERVIEW ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="rounded-3xl bg-white border border-black/5 shadow-sm p-8 lg:p-14">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={scaleUp}
+            viewport={viewportOnce}
+            className="rounded-3xl bg-white border border-black/5 shadow-sm p-8 lg:p-14"
+          >
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div>
+              <motion.div initial="hidden" whileInView="show" variants={slideRight} viewport={viewportOnce}>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">How We Work</div>
                 <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-6">
                   A Powerhouse for Your Existing Team
@@ -91,10 +101,10 @@ const ManagedServices: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
 
-              <div className="space-y-4">
-                <div className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
+              <motion.div initial="hidden" whileInView="show" variants={slideLeft} viewport={viewportOnce} className="space-y-4">
+                <motion.div variants={fadeUp} className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
                   <div className="h-14 w-14 rounded-xl bg-white grid place-items-center text-[#0B74B0] flex-shrink-0 shadow-sm">
                     <Settings size={26} />
                   </div>
@@ -102,8 +112,8 @@ const ManagedServices: React.FC = () => {
                     <div className="font-semibold text-[#0E2A38] mb-1">Assess</div>
                     <p className="text-[#0E2A38]/60 text-sm">We assess your needs and choose the best available technology that aligns with your specific requirements.</p>
                   </div>
-                </div>
-                <div className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
+                </motion.div>
+                <motion.div variants={fadeUp} className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
                   <div className="h-14 w-14 rounded-xl bg-white grid place-items-center text-[#0B74B0] flex-shrink-0 shadow-sm">
                     <Settings size={26} />
                   </div>
@@ -111,8 +121,8 @@ const ManagedServices: React.FC = () => {
                     <div className="font-semibold text-[#0E2A38] mb-1">Customize</div>
                     <p className="text-[#0E2A38]/60 text-sm">We customize our program to meet your needs and leverage technology to optimize your processes.</p>
                   </div>
-                </div>
-                <div className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
+                </motion.div>
+                <motion.div variants={fadeUp} className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
                   <div className="h-14 w-14 rounded-xl bg-white grid place-items-center text-[#0B74B0] flex-shrink-0 shadow-sm">
                     <Settings size={26} />
                   </div>
@@ -120,55 +130,95 @@ const ManagedServices: React.FC = () => {
                     <div className="font-semibold text-[#0E2A38] mb-1">Execute</div>
                     <p className="text-[#0E2A38]/60 text-sm">Formal processes minimize risk and ensure seamless transitions with top-notch communication throughout.</p>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── CAPABILITIES ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="text-center mb-12">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            viewport={viewportOnce}
+            className="text-center mb-12"
+          >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Capabilities</div>
             <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
               What We Manage
             </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={stagger(0.06, 0.12)}
+            viewport={viewportOnce}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
             {capabilities.map((c) => (
-              <div key={c.title} className="rounded-3xl bg-[#EBF4F9] p-6">
+              <motion.div
+                key={c.title}
+                variants={fadeUp}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+                className="rounded-3xl bg-[#EBF4F9] p-6"
+              >
                 <CheckCircle size={16} className="text-[#0B74B0] mb-4" />
                 <h4 className="font-semibold text-[#0E2A38] mb-2">{c.title}</h4>
                 <p className="text-[#0E2A38]/60 text-sm leading-relaxed">{c.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── INDUSTRIES ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 text-center">
-          <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Industries Served</div>
-          <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl mb-10">
-            From Aquaculture to Oil & Gas
-          </h2>
-          <div className="flex flex-wrap justify-center gap-3">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            viewport={viewportOnce}
+          >
+            <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Industries Served</div>
+            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl mb-10">
+              From Aquaculture to Oil & Gas
+            </h2>
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={stagger(0.06, 0.12)}
+            viewport={viewportOnce}
+            className="flex flex-wrap justify-center gap-3"
+          >
             {industries.map((ind) => (
-              <div key={ind} className="bg-white border border-black/5 rounded-full px-5 py-2.5 text-sm font-medium text-[#0E2A38]/70 shadow-sm">
+              <motion.div
+                key={ind}
+                variants={fadeIn}
+                className="bg-white border border-black/5 rounded-full px-5 py-2.5 text-sm font-medium text-[#0E2A38]/70 shadow-sm"
+              >
                 {ind}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── CTA ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="relative overflow-hidden rounded-3xl bg-[#0E2A38] text-white p-8 lg:p-12 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={scaleUp}
+            viewport={viewportOnce}
+            className="relative overflow-hidden rounded-3xl bg-[#0E2A38] text-white p-8 lg:p-12 text-center"
+          >
             <div aria-hidden className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
               <h3 className="font-[Manrope] font-semibold text-3xl sm:text-4xl mb-4">Got a project or a partnership in mind?</h3>
@@ -177,7 +227,7 @@ const ManagedServices: React.FC = () => {
                 Let's Talk
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

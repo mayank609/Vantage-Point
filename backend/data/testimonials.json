@@ -1,0 +1,32 @@
+[
+  {
+    "id": "test-001",
+    "createdAt": "2024-01-10T10:00:00.000Z",
+    "quote": "We went from struggling to hire for 3 months to having 6 qualified engineers in 48 hours. Game changer.",
+    "name": "Chris Thompson",
+    "title": "VP Engineering, CloudBase Inc.",
+    "metric": "48 hrs",
+    "metricLabel": "to first shortlist",
+    "active": true
+  },
+  {
+    "id": "test-002",
+    "createdAt": "2024-01-12T10:00:00.000Z",
+    "quote": "Vantage Point manages our entire IT infrastructure. It's like having a senior IT team without the overhead.",
+    "name": "Angela Rivera",
+    "title": "CFO, MedCore Health Systems",
+    "metric": "40%",
+    "metricLabel": "reduction in IT costs",
+    "active": true
+  },
+  {
+    "id": "test-003",
+    "createdAt": "2024-01-18T10:00:00.000Z",
+    "quote": "They placed our new CTO in 10 days. Quality of candidates far above any other firm we'd used.",
+    "name": "David Park",
+    "title": "CEO, Nexus FinTech",
+    "metric": "10 days",
+    "metricLabel": "to CTO hire",
+    "active": true
+  }
+]

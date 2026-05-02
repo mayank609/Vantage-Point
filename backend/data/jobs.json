@@ -1,0 +1,35 @@
+[
+  {
+    "id": "job-001",
+    "createdAt": "2024-01-15T10:00:00.000Z",
+    "title": "Senior Software Engineer",
+    "department": "Information Technology",
+    "location": "Remote / Toronto, ON",
+    "type": "Full-Time",
+    "description": "We are looking for a Senior Software Engineer to join a leading fintech client. You will architect and build scalable backend services using Node.js and AWS.",
+    "requirements": "5+ years experience, Node.js, AWS, PostgreSQL, REST APIs",
+    "active": true
+  },
+  {
+    "id": "job-002",
+    "createdAt": "2024-01-20T10:00:00.000Z",
+    "title": "Financial Analyst",
+    "department": "Finance & Accounting",
+    "location": "New York, NY",
+    "type": "Full-Time",
+    "description": "Join a top-tier investment firm as a Financial Analyst. Responsibilities include financial modeling, variance analysis, and executive reporting.",
+    "requirements": "CFA preferred, 3+ years in finance, Excel, PowerBI",
+    "active": true
+  },
+  {
+    "id": "job-003",
+    "createdAt": "2024-02-01T10:00:00.000Z",
+    "title": "DevOps Engineer",
+    "department": "Information Technology",
+    "location": "Remote",
+    "type": "Contract",
+    "description": "6-month contract role with a healthcare technology company. Own CI/CD pipelines, Kubernetes clusters, and cloud infrastructure on Azure.",
+    "requirements": "Docker, Kubernetes, Azure, Terraform, 4+ years DevOps",
+    "active": true
+  }
+]

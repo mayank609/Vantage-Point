@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CheckCircle, Users, Cloud, Settings, Clock, TrendingUp, ShieldCheck, Star } from "lucide-react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { fadeUp, scaleUp, stagger, viewportOnce } from "../lib/motion";
 
 const ForCompanies: React.FC = () => {
   const offerings = [
@@ -55,26 +57,26 @@ const ForCompanies: React.FC = () => {
         <div aria-hidden className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0B74B0]/8 rounded-full blur-3xl pointer-events-none translate-x-1/3 -translate-y-1/4" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text */}
-          <div>
-            <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">For Business Leaders & Hiring Teams</div>
-            <h1 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-6">
+          <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
+            <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">For Business Leaders & Hiring Teams</motion.div>
+            <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-6">
               Build Your Dream Team.
               <br />
               Scale Your Technology.
-            </h1>
-            <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8 max-w-md">
+            </motion.h1>
+            <motion.p variants={fadeUp} className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8 max-w-md">
               Stop wasting time on bad hires and unreliable IT vendors. Vantage Point delivers top talent
               and enterprise-grade technology solutions — fast.
-            </p>
-            <div className="flex flex-wrap gap-3">
+            </motion.p>
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
               <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-5 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25">
                 Book a Free Consultation <ArrowUpRight size={16} />
               </Link>
               <Link to="/services" className="inline-flex items-center rounded-full border border-black/15 bg-white/60 text-[#0E2A38] hover:bg-white px-5 py-2.5 text-sm font-semibold transition shadow-sm">
                 View Services
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right: Image + floating card */}
           <div className="relative h-[380px] lg:h-[440px]">
@@ -87,7 +89,12 @@ const ForCompanies: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-[#0B74B0]/20 to-[#0E2A38]/50" />
             </div>
             {/* Floating advantages card */}
-            <div className="absolute -bottom-4 -left-4 lg:-left-8 w-[calc(100%-1rem)] max-w-[340px] bg-white rounded-2xl shadow-[0_20px_50px_-10px_rgba(14,42,56,0.25)] p-5 border border-black/5">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="absolute -bottom-4 -left-4 lg:-left-8 w-[calc(100%-1rem)] max-w-[340px] bg-white rounded-2xl shadow-[0_20px_50px_-10px_rgba(14,42,56,0.25)] p-5 border border-black/5"
+            >
               <div className="text-[#0B74B0] text-[10px] font-bold tracking-[0.2em] uppercase mb-3">The Vantage Point Advantage</div>
               <div className="space-y-2 mb-4">
                 {["Pre-vetted candidates in 48–72 hours", "Only top 3% of applicants reach you", "90-day replacement guarantee", "Dedicated account manager"].map((item) => (
@@ -100,7 +107,7 @@ const ForCompanies: React.FC = () => {
               <Link to="/contact" className="block w-full h-9 leading-9 text-center rounded-xl bg-[#0E2A38] text-white text-xs font-semibold hover:bg-[#0a1f29] transition">
                 Start a Free Consultation
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -108,15 +115,32 @@ const ForCompanies: React.FC = () => {
       {/* ── OFFERINGS ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="text-center mb-12">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            viewport={viewportOnce}
+            className="text-center mb-12"
+          >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Services</div>
             <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
               Everything Your Business Needs
             </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={stagger(0.06, 0.12)}
+            viewport={viewportOnce}
+            className="grid md:grid-cols-3 gap-6"
+          >
             {offerings.map((o) => (
-              <div key={o.title} className="rounded-3xl bg-white border border-black/5 shadow-sm p-7">
+              <motion.div
+                key={o.title}
+                variants={fadeUp}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+                className="rounded-3xl bg-white border border-black/5 shadow-sm p-7"
+              >
                 <div className="h-11 w-11 rounded-xl bg-[#EBF4F9] grid place-items-center text-[#0B74B0] mb-5">
                   <o.icon size={20} />
                 </div>
@@ -129,9 +153,9 @@ const ForCompanies: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -141,17 +165,35 @@ const ForCompanies: React.FC = () => {
           <div className="rounded-3xl bg-[#0E2A38] text-white relative overflow-hidden p-8 lg:p-14">
             <div aria-hidden className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
-              <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Process</div>
-              <h2 className="font-[Manrope] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-10 max-w-xl">How It Works</h2>
-              <div className="grid md:grid-cols-4 gap-5">
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                variants={fadeUp}
+                viewport={viewportOnce}
+              >
+                <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Process</div>
+                <h2 className="font-[Manrope] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-10 max-w-xl">How It Works</h2>
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                variants={stagger(0.06, 0.12)}
+                viewport={viewportOnce}
+                className="grid md:grid-cols-4 gap-5"
+              >
                 {process.map((p) => (
-                  <div key={p.n} className="rounded-2xl bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] transition">
+                  <motion.div
+                    key={p.n}
+                    variants={fadeUp}
+                    whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+                    className="rounded-2xl bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] transition"
+                  >
                     <div className="text-5xl font-semibold text-white/15 leading-none mb-4">{p.n}</div>
                     <div className="text-lg font-semibold mb-2">{p.title}</div>
                     <p className="text-sm text-white/55 leading-relaxed">{p.desc}</p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -160,34 +202,68 @@ const ForCompanies: React.FC = () => {
       {/* ── GUARANTEES ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="text-center mb-12">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            viewport={viewportOnce}
+            className="text-center mb-12"
+          >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Our Guarantees</div>
             <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">We Back Our Work</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={stagger(0.06, 0.12)}
+            viewport={viewportOnce}
+            className="grid md:grid-cols-3 gap-6"
+          >
             {guarantees.map((g) => (
-              <div key={g.title} className="rounded-3xl bg-[#EBF4F9] p-8 flex flex-col items-start">
+              <motion.div
+                key={g.title}
+                variants={fadeUp}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+                className="rounded-3xl bg-[#EBF4F9] p-8 flex flex-col items-start"
+              >
                 <div className="h-11 w-11 rounded-xl bg-white grid place-items-center text-[#0B74B0] mb-5">
                   <g.icon size={20} />
                 </div>
                 <h4 className="font-semibold text-[#0E2A38] text-lg mb-2">{g.title}</h4>
                 <p className="text-[#0E2A38]/60 text-sm leading-relaxed">{g.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── TESTIMONIALS ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="text-center mb-12">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            viewport={viewportOnce}
+            className="text-center mb-12"
+          >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Client Results</div>
             <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">Numbers Don't Lie</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={stagger(0.06, 0.12)}
+            viewport={viewportOnce}
+            className="grid md:grid-cols-3 gap-6"
+          >
             {testimonials.map((t) => (
-              <div key={t.name} className="rounded-3xl bg-white border border-black/5 shadow-sm p-7">
+              <motion.div
+                key={t.name}
+                variants={scaleUp}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+                className="rounded-3xl bg-white border border-black/5 shadow-sm p-7"
+              >
                 <div className="text-4xl font-semibold text-[#0B74B0] tracking-tight mb-1">{t.metric}</div>
                 <div className="text-xs font-semibold text-[#0E2A38]/50 uppercase tracking-wide mb-4">{t.metricLabel}</div>
                 <div className="flex gap-0.5 mb-4">
@@ -198,16 +274,22 @@ const ForCompanies: React.FC = () => {
                   <div className="font-semibold text-[#0E2A38] text-sm">{t.name}</div>
                   <div className="text-[#0E2A38]/40 text-xs mt-0.5">{t.title}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── CTA ── */}
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="relative overflow-hidden rounded-3xl bg-[#0B74B0] text-white p-8 lg:p-12 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={scaleUp}
+            viewport={viewportOnce}
+            className="relative overflow-hidden rounded-3xl bg-[#0B74B0] text-white p-8 lg:p-12 text-center"
+          >
             <div aria-hidden className="absolute inset-0 opacity-25 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
               <h3 className="font-[Manrope] font-semibold text-3xl sm:text-4xl mb-4">Ready to Hire Smarter & Scale Faster?</h3>
@@ -218,7 +300,7 @@ const ForCompanies: React.FC = () => {
                 Book My Free Call
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

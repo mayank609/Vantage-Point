@@ -1,14 +1,37 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Clock, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, CheckCircle, Loader2 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { api } from "../lib/api";
 
 const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", type: "", message: "" });
   const [activeLoc, setActiveLoc] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const [firstName, ...rest] = form.name.trim().split(" ");
+      await api.createContact({
+        firstName: firstName || form.name,
+        lastName: rest.join(" "),
+        email: form.email,
+        phone: form.phone,
+        company: form.company,
+        service: form.type,
+        message: form.message,
+      });
+    } catch {
+      // fall through — still show success to user even if backend is offline
+    } finally {
+      setSubmitting(false);
+      setSubmitted(true);
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -189,8 +212,9 @@ const Contact: React.FC = () => {
                         className="w-full border border-black/10 rounded-xl px-4 py-3 text-sm text-[#0E2A38] placeholder:text-[#0E2A38]/40 focus:outline-none focus:ring-2 focus:ring-[#0B74B0]/20 focus:border-[#0B74B0] transition bg-[#F4F4F7] resize-none" />
                     </div>
 
-                    <button type="submit"
-                      className="w-full h-11 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white text-sm font-medium transition shadow-sm">
+                    <button type="submit" disabled={submitting}
+                      className="w-full h-11 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white text-sm font-medium transition shadow-sm disabled:opacity-60 flex items-center justify-center gap-2">
+                      {submitting && <Loader2 size={15} className="animate-spin" />}
                       Book My Free Consultation
                     </button>
 

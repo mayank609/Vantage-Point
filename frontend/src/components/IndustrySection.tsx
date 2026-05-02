@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
+import { fadeUp, stagger, viewportOnce } from "../lib/motion";
 
 const IndustrySection: React.FC = () => {
   const industries = [
@@ -77,10 +78,7 @@ const IndustrySection: React.FC = () => {
     <section className="py-24 bg-[#F4F4F7]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce}
           className="text-center mb-14"
         >
           <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Industries We Serve</div>
@@ -92,15 +90,12 @@ const IndustrySection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {industries.map((ind, index) => (
-            <motion.div
-              key={ind.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-            >
+        <motion.div
+          initial="hidden" whileInView="show" variants={stagger(0.04, 0.1)} viewport={viewportOnce}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
+        >
+          {industries.map((ind) => (
+            <motion.div key={ind.name} variants={fadeUp}>
               <TiltCard className="h-full">
                 <div className="hover-float-card group relative h-full bg-white rounded-3xl p-6 border border-black/[0.08] shadow-sm transition-all duration-300 hover:border-[#0B74B0]/25">
                   {/* BG decor */}
@@ -131,7 +126,7 @@ const IndustrySection: React.FC = () => {
               </TiltCard>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

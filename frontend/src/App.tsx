@@ -10,6 +10,7 @@ import LegalStaffing from "@/pages/LegalStaffing";
 import Careers from "@/pages/Careers";
 import CeoMessage from "@/pages/CeoMessage";
 import Contact from "@/pages/Contact";
+import Admin from "@/pages/Admin";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/ceo-message" element={<CeoMessage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
