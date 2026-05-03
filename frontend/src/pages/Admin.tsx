@@ -4,7 +4,7 @@ import {
   LogOut, Plus, Pencil, Trash2, Check, X, Eye, EyeOff,
   Users, Mail, TrendingUp, ChevronRight, AlertCircle, Loader2,
 } from "lucide-react";
-import { api, Job, Testimonial, Contact, Service } from "../lib/api";
+import { api, Job, Testimonial, Contact, Service, Stats } from "../lib/api";
 
 // ── tiny helpers ──────────────────────────────────────────────────────────────
 function cls(...args: (string | false | undefined)[]) {
@@ -597,14 +597,21 @@ export default function Admin() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [services, setServices] = useState<Service[]>([]);
+  const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchAll = useCallback(async () => {
     if (!authed) return;
     setLoading(true);
     try {
-      const [j, t, c, s] = await Promise.all([api.getJobs(), api.getTestimonials(), api.getContacts(), api.getServices()]);
-      setJobs(j); setTestimonials(t); setContacts(c); setServices(s);
+      const [j, t, c, s, st] = await Promise.all([
+        api.getJobs(),
+        api.getTestimonials(),
+        api.getContacts(),
+        api.getServices(),
+        api.getStats()
+      ]);
+      setJobs(j); setTestimonials(t); setContacts(c); setServices(s); setStats(st);
     } catch { /* token may be stale */ }
     finally { setLoading(false); }
   }, [authed]);

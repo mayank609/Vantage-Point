@@ -55,11 +55,17 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Services */}
-        <div>
-          <div className="font-bold text-[#0B74B0] text-[10px] uppercase tracking-[0.25em] mb-6">Services</div>
+        {/* Solutions */}
+        <div className="lg:col-span-1">
+          <div className="font-bold text-[#0B74B0] text-[10px] uppercase tracking-[0.25em] mb-6">Solutions</div>
           <ul className="space-y-3 text-sm text-white/55">
             {[
+              { label: "For Companies", to: "/companies" },
+              { label: "For Candidates", to: "/candidates" },
+              { label: "Legal Staffing", to: "/legal-staffing" },
+              { label: "Cloud Migration", to: "/cloud-migration" },
+              { label: "Managed Services", to: "/managed-services" },
+              { label: "Finpay Solutions", to: "/finpay" },
               { label: "Professional Services", to: "/services" },
               { label: "Oracle Solutions", to: "/services" },
               { label: "Workday HCM", to: "/services" },
@@ -75,40 +81,43 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Company */}
-        <div>
-          <div className="font-bold text-[#0B74B0] text-[10px] uppercase tracking-[0.25em] mb-6">Company</div>
-          <ul className="space-y-3 text-sm text-white/55">
-            {[
-              { label: "About Us", to: "/about" },
-              { label: "Careers", to: "/careers" },
-              { label: "Message from CEO", to: "/ceo-message" },
-              { label: "Get in Touch", to: "/contact" },
-            ].map((it) => (
-              <li key={it.label}>
-                <Link to={it.to} className="hover:text-white transition-colors duration-200 flex items-center gap-1.5 group">
-                  <span className="w-0 group-hover:w-3 h-[1px] bg-[#0B74B0] transition-all duration-300 inline-block" />
-                  {it.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {/* Company & Industries */}
+        <div className="lg:col-span-1 space-y-12">
+          <div>
+            <div className="font-bold text-[#0B74B0] text-[10px] uppercase tracking-[0.25em] mb-6">Company</div>
+            <ul className="space-y-3 text-sm text-white/55">
+              {[
+                { label: "About Us", to: "/about" },
+                { label: "Careers", to: "/careers" },
+                { label: "Message from CEO", to: "/ceo-message" },
+                { label: "Get in Touch", to: "/contact" },
+              ].map((it) => (
+                <li key={it.label}>
+                  <Link to={it.to} className="hover:text-white transition-colors duration-200 flex items-center gap-1.5 group">
+                    <span className="w-0 group-hover:w-3 h-[1px] bg-[#0B74B0] transition-all duration-300 inline-block" />
+                    {it.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <div className="font-bold text-[#0B74B0] text-[10px] uppercase tracking-[0.25em] mb-6">Industries</div>
+            <ul className="space-y-3 text-sm text-white/55">
+              {["Fintech", "Healthcare", "Legal", "Insurance", "Government", "Media"].map((it) => (
+                <li key={it}>
+                  <span className="hover:text-white transition-colors duration-200 cursor-default flex items-center gap-1.5 group">
+                    <span className="w-0 group-hover:w-3 h-[1px] bg-[#75479C] transition-all duration-300 inline-block" />
+                    {it}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Industries */}
-        <div>
-          <div className="font-bold text-[#0B74B0] text-[10px] uppercase tracking-[0.25em] mb-6">Industries</div>
-          <ul className="space-y-3 text-sm text-white/55">
-            {["Fintech", "Healthcare", "Legal", "Insurance", "Government", "Media"].map((it) => (
-              <li key={it}>
-                <span className="hover:text-white transition-colors duration-200 cursor-default flex items-center gap-1.5 group">
-                  <span className="w-0 group-hover:w-3 h-[1px] bg-[#75479C] transition-all duration-300 inline-block" />
-                  {it}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Contact/CTA Column (Optional or keep simple) */}
       </div>
 
       {/* Bottom bar */}

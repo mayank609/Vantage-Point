@@ -8,12 +8,12 @@ import { fadeUp, scaleUp, stagger, slideLeft, slideRight, fadeIn, viewportOnce }
 
 const ManagedServices: React.FC = () => {
   const capabilities = [
-    { title: "Information Technology", desc: "Complete IT strategy, planning, and management — from systems design to day-to-day operations." },
-    { title: "Network Management", desc: "Full network infrastructure design, monitoring, and optimization to keep your business always connected." },
-    { title: "Application Support", desc: "End-to-end application lifecycle management including deployment, performance monitoring, and updates." },
-    { title: "Infrastructure", desc: "Servers, storage, and data center management — on-premise, cloud, or hybrid environments." },
-    { title: "Security", desc: "Proactive cybersecurity monitoring, threat response, vulnerability management, and compliance support." },
-    { title: "Change Management", desc: "Top-notch customer service, communication, and change management processes to ensure seamless transitions." },
+    { title: "Strategic Planning", desc: "Our experts work on strategizing and building a complete Information Technology, network, application, infrastructure and security solution." },
+    { title: "Customized Programs", desc: "We ensure that we offer the appropriate technology and service that aligns with each customer’s unique requirements." },
+    { title: "Process Optimization", desc: "We customize our program to meet your needs and leverage technology to optimize your processes." },
+    { title: "Seamless Transitions", desc: "Established formal processes that minimize risk and ensure seamless transitions based on years of experience." },
+    { title: "Top-Notch Support", desc: "Our customer service, communication, and change management processes are recognized as best-in-class." },
+    { title: "Team Coordination", desc: "We act as a powerhouse to your existing team and technology to ensure effective coordination." },
   ];
 
   const industries = [
@@ -35,10 +35,10 @@ const ManagedServices: React.FC = () => {
             <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
               <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Managed Services</motion.div>
               <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
-                Full-Service Managed IT Provider
+                Full-Service Managed Service Provider
               </motion.h1>
               <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
-                Strategizing and building a complete Information Technology, network, application, infrastructure and security solution — customized to meet your needs.
+                Vantage Point Consulting experts work on strategizing and building complete IT, network, application, infrastructure, and security solutions so you can confidently move your business forward.
               </motion.p>
               <motion.div variants={fadeUp}>
                 <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-semibold transition shadow-lg shadow-[#0B74B0]/25">
@@ -60,8 +60,8 @@ const ManagedServices: React.FC = () => {
                   <ArrowUpRight size={18} />
                 </div>
                 <div>
-                  <div className="text-[#0E2A38] font-bold text-xs">24/7 Support</div>
-                  <div className="text-[#0E2A38]/50 text-[10px]">Network · Security · Infrastructure</div>
+                  <div className="text-[#0E2A38] font-bold text-xs">Expert Strategy</div>
+                  <div className="text-[#0E2A38]/50 text-[10px]">Infrastructure · Security · Networks</div>
                 </div>
               </div>
             </div>
@@ -81,21 +81,21 @@ const ManagedServices: React.FC = () => {
           >
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <motion.div initial="hidden" whileInView="show" variants={slideRight} viewport={viewportOnce}>
-                <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">How We Work</div>
+                <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Our Methodology</div>
                 <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-6">
-                  A Powerhouse for Your Existing Team
+                  Appropriate Technology for Your Unique Requirements
                 </h2>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
-                  We act as a powerhouse to your existing team and technology to ensure a smooth transition. Our expertise covers strategizing and building a complete Information Technology, network, application, infrastructure and security stack.
+                  We understand that each customer has unique requirements. At the same time, we ensure that we offer the appropriate technology and service that aligns with your specific needs.
                 </p>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
-                  We customize our program to meet your needs and leverage technology to optimize your processes — assessing your requirements to choose the best available technology that aligns with your specific business goals.
+                  We assemble a skilled and knowledgeable team of individuals to support our clients. Through years of experience and lessons learned, we have established formal processes that minimize risk and ensure seamless transitions.
                 </p>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8">
-                  Our established formal processes minimize risk and ensure seamless transitions. Our customer service, communication, and change management processes are top-notch.
+                  We assess your needs and choose the best available technology that aligns with your specific requirements. We act as a powerhouse to your existing team and technology to ensure a smooth transition and effective coordination.
                 </p>
                 <ul className="space-y-3">
-                  {["Minimize risk with formal, proven processes", "Leverage technology to optimize your processes", "Top-notch communication & change management", "Seamless transitions with minimal disruption", "Customized program tailored to your needs"].map((item) => (
+                  {["Strategizing and building complete IT solutions", "Service for a wide range of industries", "Formal processes that minimize risk", "Top-notch communication and change management", "Customized programs to optimize your processes"].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-[#0E2A38]/70">
                       <CheckCircle size={15} className="text-[#0B74B0] flex-shrink-0 mt-0.5" /> {item}
                     </li>
@@ -110,7 +110,7 @@ const ManagedServices: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-[#0E2A38] mb-1">Assess</div>
-                    <p className="text-[#0E2A38]/60 text-sm">We assess your needs and choose the best available technology that aligns with your specific requirements.</p>
+                    <p className="text-[#0E2A38]/60 text-sm">We choose the best available technology that aligns with your specific business requirements.</p>
                   </div>
                 </motion.div>
                 <motion.div variants={fadeUp} className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
@@ -119,7 +119,7 @@ const ManagedServices: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-[#0E2A38] mb-1">Customize</div>
-                    <p className="text-[#0E2A38]/60 text-sm">We customize our program to meet your needs and leverage technology to optimize your processes.</p>
+                    <p className="text-[#0E2A38]/60 text-sm">We customize our program and leverage technology to optimize your unique processes.</p>
                   </div>
                 </motion.div>
                 <motion.div variants={fadeUp} className="rounded-2xl bg-[#EBF4F9] p-7 flex items-center gap-5">
@@ -127,8 +127,8 @@ const ManagedServices: React.FC = () => {
                     <Settings size={26} />
                   </div>
                   <div>
-                    <div className="font-semibold text-[#0E2A38] mb-1">Execute</div>
-                    <p className="text-[#0E2A38]/60 text-sm">Formal processes minimize risk and ensure seamless transitions with top-notch communication throughout.</p>
+                    <div className="font-semibold text-[#0E2A38] mb-1">Powerhouse</div>
+                    <p className="text-[#0E2A38]/60 text-sm">Acting as a powerhouse to your existing team to ensure smooth transitions and coordination.</p>
                   </div>
                 </motion.div>
               </motion.div>

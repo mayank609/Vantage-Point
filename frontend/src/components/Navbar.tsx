@@ -6,7 +6,7 @@ import { useLenis } from "lenis/react";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
 
@@ -18,7 +18,13 @@ const Navbar: React.FC = () => {
     setScrolled(scroll > 24);
   });
 
-  const serviceLinks = [
+  const solutionLinks = [
+    { label: "For Companies", to: "/companies" },
+    { label: "For Candidates", to: "/candidates" },
+    { label: "Legal Staffing", to: "/legal-staffing" },
+    { label: "Cloud Migration", to: "/cloud-migration" },
+    { label: "Managed Services", to: "/managed-services" },
+    { label: "Finpay Solutions", to: "/finpay" },
     { label: "Professional Services", to: "/services" },
     { label: "Oracle Solutions", to: "/services" },
     { label: "Workday HCM", to: "/services" },
@@ -51,39 +57,41 @@ const Navbar: React.FC = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-7 text-sm text-[#0E2A38] font-bold">
-          {/* Services dropdown */}
+          {/* Solutions dropdown */}
           <div
             className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
+            onMouseEnter={() => setSolutionsOpen(true)}
+            onMouseLeave={() => setSolutionsOpen(false)}
           >
             <button
               className={`flex items-center gap-1 hover:text-[#0B74B0] transition-colors duration-200 ${
-                serviceLinks.some((l) => l.to === pathname) ? "text-[#0B74B0]" : ""
+                solutionLinks.some((l) => l.to === pathname) ? "text-[#0B74B0]" : ""
               }`}
             >
-              Services{" "}
+              Solutions{" "}
               <ChevronDown
                 size={14}
                 strokeWidth={2.5}
-                className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                className={`transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`}
               />
             </button>
 
             <motion.div
               initial={false}
-              animate={servicesOpen ? { opacity: 1, y: 0, pointerEvents: "auto" } : { opacity: 0, y: -6, pointerEvents: "none" }}
+              animate={solutionsOpen ? { opacity: 1, y: 0, pointerEvents: "auto" } : { opacity: 0, y: -6, pointerEvents: "none" }}
               transition={{ duration: 0.18, ease: "easeOut" }}
-              className="absolute top-full left-0 pt-3 w-60"
+              className="absolute top-full left-0 pt-3 w-64"
             >
               <div className="bg-white rounded-2xl border border-black/[0.08] shadow-xl py-2 overflow-hidden">
-                {serviceLinks.map((l, i) => (
+                {solutionLinks.map((l, i) => (
                   <Link
                     key={l.label}
                     to={l.to}
                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#0E2A38] font-bold hover:bg-[#EBF4F9] hover:text-[#0B74B0] transition-colors"
                   >
-                    <span className="text-[#0B74B0]/40 text-[10px] font-black tabular-nums">0{i + 1}</span>
+                    <span className="text-[#0B74B0]/40 text-[10px] font-black tabular-nums">
+                      {i + 1 < 10 ? `0${i + 1}` : i + 1}
+                    </span>
                     {l.label}
                   </Link>
                 ))}
@@ -102,13 +110,8 @@ const Navbar: React.FC = () => {
           ))}
         </nav>
 
+
         <div className="flex items-center gap-3">
-          <Link
-            to="/contact"
-            className="hidden sm:inline-flex h-9 items-center rounded-full px-5 text-sm text-[#0E2A38] font-bold hover:bg-black/5 transition"
-          >
-            Get in Touch
-          </Link>
           <Link
             to="/contact"
             className="btn-shine inline-flex h-9 items-center rounded-full px-6 bg-[#0B74B0] text-white text-sm font-bold hover:bg-[#096396] transition shadow-md shadow-[#0B74B0]/20"
@@ -134,18 +137,21 @@ const Navbar: React.FC = () => {
           transition={{ duration: 0.2 }}
           className="md:hidden bg-white border-t border-black/[0.08] px-6 py-6 space-y-2 shadow-xl"
         >
-          <div className="text-[10px] font-black text-[#0B74B0] uppercase tracking-[0.25em] mb-4">Services</div>
-          {serviceLinks.map((l, i) => (
+          <div className="text-[10px] font-black text-[#0B74B0] uppercase tracking-[0.25em] mb-4">Solutions</div>
+          {solutionLinks.map((l, i) => (
             <Link
               key={l.label}
               to={l.to}
               onClick={() => setOpen(false)}
               className="flex items-center gap-3 py-2.5 text-base text-[#0E2A38] font-semibold pl-3 border-l-2 border-transparent hover:border-[#0B74B0] hover:text-[#0B74B0] transition-all"
             >
-              <span className="text-[#0B74B0]/40 text-xs font-black tabular-nums">0{i + 1}</span>
+              <span className="text-[#0B74B0]/40 text-xs font-black tabular-nums">
+                {i + 1 < 10 ? `0${i + 1}` : i + 1}
+              </span>
               {l.label}
             </Link>
           ))}
+
           <div className="border-t border-black/[0.08] pt-4 mt-4">
             {links.map((l) => (
               <Link

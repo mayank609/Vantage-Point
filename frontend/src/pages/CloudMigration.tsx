@@ -6,12 +6,12 @@ import Footer from "../components/Footer";
 
 const CloudMigration: React.FC = () => {
   const offerings = [
-    { title: "Public Cloud", desc: "Leverage established best practices, management tools, and expert technologists to accelerate your public cloud transformation." },
-    { title: "Private Cloud", desc: "Secure, dedicated cloud environments tailored to your compliance requirements and business continuity needs." },
-    { title: "Hybrid Cloud", desc: "The optimal mix of public and private cloud, giving you flexibility, control, and scalability across all environments." },
-    { title: "Cloud Data Protection", desc: "Our Cloud Data Protection Platform enables consistent, adaptable data protection so enterprises can leverage data insights and meet customer needs." },
-    { title: "Migration Consulting", desc: "Client-focused methodology using pre-designed templates and data analysis tools to facilitate seamless, efficient migrations without operational disruption." },
-    { title: "Post-Migration Optimization", desc: "Ongoing support to optimize your cloud environment, reduce costs, and ensure maximum performance after migration." },
+    { title: "Public Cloud", desc: "Benefit from established practices, effective management tools, and expert cloud technologists to hasten your transformation." },
+    { title: "Private Cloud", desc: "Dedicated cloud environments tailored to your specific security, performance, and compliance requirements." },
+    { title: "Hybrid Cloud", desc: "Advancing On-Premise, Hybrid and Cloud Migration projects using our Cloud Data Protection Platform." },
+    { title: "Cloud Data Protection", desc: "Provides consistent and adaptable data protection, allowing enterprises to utilize valuable data insights." },
+    { title: "Migration Consulting", desc: "Client-focused method utilizing pre-designed templates and data analysis tools to facilitate seamless migrations." },
+    { title: "Strategic Collaboration", desc: "We collaborate with you to identify the optimal cloud strategy – public, private, or hybrid – for your business." },
   ];
 
   return (
@@ -51,19 +51,19 @@ const CloudMigration: React.FC = () => {
               <div>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Our Approach</div>
                 <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-6">
-                  We Identify the Optimal Cloud Strategy for Your Business
+                  Navigate the Evolving Landscape
                 </h2>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
-                  Navigating cloud technology can prove challenging for organizations. We at VPC collaborate with you to identify the optimal cloud strategy — public, private, or hybrid — for your business.
+                  The ever-evolving landscape of cloud technology can be difficult for many businesses to keep up with. With VPC’s managed public cloud services, companies benefit from established practices, effective management tools, and expert cloud technologists to hasten their cloud transformation.
                 </p>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
-                  We offer managed public cloud services featuring established best practices, management tools, and expert technologists to accelerate transformation efforts.
+                  At VPC, we enable companies to advance their On-Premise, Hybrid and Cloud Migration projects using our Cloud Data Protection Platform. This provides consistent and adaptable data protection, allowing enterprises to fulfill customer demands and improve their competitiveness.
                 </p>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8">
-                  VPC's approach utilizes a Cloud Data Protection Platform enabling consistent, adaptable data protection — allowing enterprises to leverage data insights, discover opportunities, meet customer needs, and enhance competitive standing.
+                  VPC collaborates with you to identify the optimal cloud strategy – public, private, or hybrid – for your business. Our cloud migration consulting services adopt a client-focused method to facilitate migrations seamlessly, efficiently, and with no disruption to your operations.
                 </p>
                 <ul className="space-y-3">
-                  {["Public, private, or hybrid cloud strategy", "Cloud Data Protection Platform", "Pre-designed templates and data analysis tools", "Seamless migration without operational disruption", "Ongoing optimization and support"].map((item) => (
+                  {["Benefit from established practices & management tools", "Hasten transformation with expert cloud technologists", "Consistent and adaptable data protection", "Client-focused method with no business disruption", "Identify the optimal strategy: public, private, or hybrid"].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-[#0E2A38]/70">
                       <CheckCircle size={15} className="text-[#0B74B0] flex-shrink-0 mt-0.5" /> {item}
                     </li>
@@ -75,9 +75,9 @@ const CloudMigration: React.FC = () => {
                 <div className="h-16 w-16 rounded-2xl bg-white grid place-items-center text-[#0B74B0] mb-5 shadow-sm">
                   <Cloud size={32} />
                 </div>
-                <h3 className="font-semibold text-[#0E2A38] text-xl mb-3">Ready to move to the cloud?</h3>
+                <h3 className="font-semibold text-[#0E2A38] text-xl mb-3">Cloud Data Protection</h3>
                 <p className="text-[#0E2A38]/60 text-sm leading-relaxed mb-6">
-                  Our consulting team will assess your current infrastructure and design a migration roadmap tailored to your business.
+                  Utilize valuable data insights and discover new possibilities while ensuring your data remains protected across all cloud systems.
                 </p>
                 <Link to="/contact" className="inline-flex items-center h-10 px-6 rounded-full bg-[#0E2A38] text-white text-sm font-medium hover:bg-[#0a1f29] transition">
                   Let's Talk

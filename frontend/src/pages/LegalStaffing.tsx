@@ -6,17 +6,18 @@ import Footer from "../components/Footer";
 
 const LegalStaffing: React.FC = () => {
   const positions = [
-    "Paralegals", "Legal Secretaries", "Attorneys", "Litigation Support",
-    "Legal Administrators", "Case Assistants", "Records Clerks", "Billing Specialists",
-    "Word Processors", "Contracts Analysts", "Compliance Officers", "Document Review Attorneys",
-    "IT Professionals", "GRC Specialists",
+    "Paralegal", "Legal Secretary", "Attorney", "Litigation Solutions",
+    "Case Assistant", "Records Clerk", "Legal Administrative Assistant",
+    "Legal Billing/ Elite 3 E", "Legal Word Processor", "Contracts Analyst",
+    "Legal Compliance", "Substantive Attorney", "AML Reviewer", "BSA Reviewer",
+    "Document Review Attorney", "Information Technology", "GRC",
   ];
 
   const differentiators = [
-    { title: "Personal Relationships", desc: "Personal relationships cultivated over years in the legal industry, combined with our proprietary tools to match candidates with the right positions." },
-    { title: "Industry Experience", desc: "Our attorney search teams bring direct industry experience — we are former lawyers, paralegals, and litigation support professionals." },
-    { title: "Confidential Pre-Screening", desc: "Confidential pre-screening methods including personal and virtual interviews to protect candidate and client privacy at every stage." },
-    { title: "Values-Driven", desc: "A values-driven organization built on honesty, ethics, and integrity. We reject generic approaches in favor of a truly customized solution." },
+    { title: "Touch with Technology", desc: "Our seasoned recruiters and attorney search teams utilize personal relationships cultivated over years in the legal industry, coupled with our proprietary tools, to simplify the process of aligning the perfect individual with the right position." },
+    { title: "No One-Size-Fits-All", desc: "We invest time in comprehending the distinctive requirements and nuances of our clients and candidates from the outset, crafting exceptional experiences for every individual, every time." },
+    { title: "Values-Driven Firm", desc: "We operate as a values-driven firm, steadfastly upholding honesty, ethics, and integrity as the guiding principles influencing our behaviors and actions at every juncture." },
+    { title: "Broad Placement Focus", desc: "Our focus lies in the placement of: Lawyers | Litigation Support | Legal Administrators | Legal Office Services | Legal Secretaries | Paralegals | Information Technology Services | Billing" },
   ];
 
   return (
@@ -41,8 +42,8 @@ const LegalStaffing: React.FC = () => {
             <br />
             legal staffing solution tailored to your firm's distinct needs.
           </h1>
-          <p className="mt-6 text-white/60 max-w-xl mx-auto text-sm leading-relaxed">
-            Built on personal relationships, proprietary tools, and a commitment to honesty, ethics, and integrity.
+          <p className="mt-6 text-white/60 max-w-2xl mx-auto text-sm leading-relaxed">
+            Discover a pool of attorneys, paralegals, and specialized legal personnel ready to bolster your practice or legal department. Connect with fresh legal talent and opportunities right at your fingertips.
           </p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-medium transition shadow-sm">
             Let's Talk <ArrowUpRight size={16} />
@@ -58,19 +59,19 @@ const LegalStaffing: React.FC = () => {
               <div>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Our Philosophy</div>
                 <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-6">
-                  We Invest Time in Understanding Your Distinct Needs
+                  Merging Touch with Technology
                 </h2>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
-                  Vantage Point Consulting operates as a values-driven organization that rejects generic approaches. We invest time in comprehending the distinctive requirements and nuances of our clients and candidates from the outset.
+                  At Vantage Point Consulting, we shun a one-size-fits-all mentality! We invest time in comprehending the distinctive requirements and nuances of our clients and candidates from the outset, crafting exceptional experiences for every individual, every time.
                 </p>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
-                  We combine personal relationships cultivated over years in the legal industry with our proprietary tools to match candidates with positions that are the right fit for both parties.
+                  Merging touch with technology, our seasoned recruiters and attorney search teams utilize personal relationships cultivated over years in the legal industry, coupled with our proprietary tools, to simplify the process of aligning the perfect individual with the right position.
                 </p>
                 <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8">
-                  Our services cover compliance, insurance claims, document review, and litigation support. Our approach involves confidential pre-screening methods, including personal and virtual interviews.
+                  Crucially, we operate as a values-driven firm, steadfastly upholding honesty, ethics, and integrity as the guiding principles influencing our behaviors and actions at every juncture.
                 </p>
                 <ul className="space-y-3">
-                  {["Former lawyers, paralegals & litigation support professionals", "Proprietary matching tools and methods", "Confidential pre-screening at every stage", "Honesty, ethics, and integrity in every engagement"].map((item) => (
+                  {["Specialized legal personnel ready to bolster your practice", "Explore career-expanding positions", "Seasoned recruiters and attorney search teams", "Guiding principles of honesty, ethics, and integrity"].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-[#0E2A38]/70">
                       <CheckCircle size={15} className="text-[#0B74B0] flex-shrink-0 mt-0.5" /> {item}
                     </li>
@@ -79,7 +80,7 @@ const LegalStaffing: React.FC = () => {
               </div>
 
               <div>
-                <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">What Sets Us Apart</div>
+                <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">The Vantage Point Way</div>
                 <div className="space-y-4">
                   {differentiators.map((d) => (
                     <div key={d.title} className="rounded-2xl bg-[#EBF4F9] p-5">
@@ -98,14 +99,14 @@ const LegalStaffing: React.FC = () => {
       <section className="bg-[#F4F4F7] pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="text-center mb-12">
-            <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Positions We Fill</div>
+            <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Areas We Help Place Candidates</div>
             <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
-              Across the Full Legal Spectrum
+              Specialized Legal Talent
             </h2>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             {positions.map((pos) => (
-              <div key={pos} className="bg-[#EBF4F9] rounded-full px-5 py-2.5 text-sm font-medium text-[#0E2A38] hover:shadow-sm transition cursor-default">
+              <div key={pos} className="bg-[#EBF4F9] rounded-full px-5 py-2.5 text-sm font-medium text-[#0E2A38] hover:shadow-sm transition cursor-default border border-black/5">
                 {pos}
               </div>
             ))}

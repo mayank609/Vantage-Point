@@ -48,7 +48,17 @@ export const api = {
   createService: (data: Omit<Service, "id" | "createdAt">) => req<Service>("POST", "/services", data, true),
   updateService: (id: string, data: Partial<Service>) => req<Service>("PUT", `/services/${id}`, data, true),
   deleteService: (id: string) => req<void>("DELETE", `/services/${id}`, undefined, true),
+
+  // stats
+  getStats: () => req<Stats>("GET", "/stats", undefined, true),
 };
+
+export interface Stats {
+  jobs: { total: number; active: number };
+  testimonials: { total: number };
+  contacts: { total: number; unread: number };
+  services: { total: number; active: number };
+}
 
 export interface Job {
   id: string;

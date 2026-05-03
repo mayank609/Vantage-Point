@@ -12,6 +12,8 @@ import {
   Linkedin,
   Facebook,
 } from "lucide-react"
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 /* ------------------------------------------------------------------ */
@@ -51,59 +53,6 @@ const InstacartLogo: React.FC<{ className?: string }> = ({ className }) => (
     <path d="M15.629 9.619c1.421 1.429 2.58 3.766 1.917 5.152-1.778 3.715-15.04 10.226-16.169 9.1C.252 22.746 6.768 9.476 10.481 7.697c1.388-.66 3.724.51 5.152 1.92l-.005.014v-.012zm7.028-1.566c-.231-.855-.821-1.717-1.7-1.82-1.61-.186-4.151 2.663-3.971 3.339.181.69 3.766 1.875 5.1.915.691-.494.781-1.56.556-2.414l.015-.02zM17.666.158c1.198.324 2.407 1.148 2.551 2.382.261 2.259-3.732 5.819-4.68 5.564-.948-.251-2.618-5.284-1.269-7.162.695-.972 2.201-1.106 3.399-.788v.004h-.001z"/>
   </svg>
 );
-
-/* ------------------------------------------------------------------ */
-/*                              NAVBAR                                  */
-/* ------------------------------------------------------------------ */
-const Navbar: React.FC = () => {
-  return (
-    <header
-      data-testid="finpay-navbar"
-      className="sticky top-0 z-40 w-full backdrop-blur-md bg-[#F4F4F7]/80 border-b border-black/5"
-    >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
-        <a
-          href="#"
-          data-testid="brand-logo"
-          className="flex items-center gap-2 font-semibold text-[#0E2A38] tracking-tight"
-        >
-          <span className="grid place-items-center h-7 w-7 rounded-md bg-[#0E2A38] text-[#0B74B0] text-xs font-bold">
-            F
-          </span>
-          <span className="text-lg">Finpay</span>
-        </a>
-
-        <nav className="hidden md:flex items-center gap-9 text-sm text-[#0E2A38]/80">
-          {["Products", "Customers", "Pricing", "Learn"].map((item) => (
-            <a
-              key={item}
-              href="#"
-              data-testid={`nav-${item.toLowerCase()}`}
-              className="hover:text-[#0E2A38] transition-colors"
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <button
-            data-testid="nav-login-btn"
-            className="hidden sm:inline-flex h-9 items-center rounded-full px-4 text-sm text-[#0E2A38] hover:bg-black/5 transition"
-          >
-            Login
-          </button>
-          <button
-            data-testid="nav-signup-btn"
-            className="inline-flex h-9 items-center rounded-full px-4 bg-[#0B74B0] text-white text-sm font-medium hover:bg-[#096396] transition shadow-sm"
-          >
-            Sign Up
-          </button>
-        </div>
-      </div>
-    </header>
-  );
-};
 
 /* ------------------------------------------------------------------ */
 /*                         HERO + PAYMENT CARD                         */
@@ -688,86 +637,6 @@ const CtaBanner: React.FC = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-/* ------------------------------------------------------------------ */
-/*                                FOOTER                                */
-/* ------------------------------------------------------------------ */
-const Footer: React.FC = () => {
-  const cols = [
-    {
-      title: "Solutions",
-      items: ["Small Business", "Freelancers", "Customers", "Teams"],
-    },
-    {
-      title: "Company",
-      items: ["About Us", "Career", "Contact"],
-    },
-    {
-      title: "Learn",
-      items: ["Blog", "Stories", "Guides", "Templates"],
-    },
-  ];
-  return (
-    <footer data-testid="footer" className="bg-[#F4F4F7] border-t border-black/5">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-14 grid gap-10 lg:grid-cols-5">
-        <div className="lg:col-span-1">
-          <a className="flex items-center gap-2 font-semibold text-[#0E2A38]">
-            <span className="grid place-items-center h-7 w-7 rounded-md bg-[#0E2A38] text-[#0B74B0] text-xs font-bold">
-              F
-            </span>
-            <span className="text-lg">Finpay</span>
-          </a>
-        </div>
-
-        {cols.map((c) => (
-          <div key={c.title}>
-            <div className="font-semibold text-[#0E2A38] text-sm mb-4">
-              {c.title}
-            </div>
-            <ul className="space-y-2.5 text-sm text-[#0E2A38]/60">
-              {c.items.map((it) => (
-                <li key={it}>
-                  <a href="#" className="hover:text-[#0E2A38] transition">
-                    {it}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        <div>
-          <div className="font-semibold text-[#0E2A38] text-sm mb-4">
-            Follow Us On
-          </div>
-          <div className="flex items-center gap-3">
-            {[
-              { Icon: Twitter, label: "twitter" },
-              { Icon: Linkedin, label: "linkedin" },
-              { Icon: Facebook, label: "facebook" },
-            ].map(({ Icon, label }) => (
-              <a
-                key={label}
-                href="#"
-                data-testid={`social-${label}`}
-                aria-label={label}
-                className="h-9 w-9 grid place-items-center rounded-full bg-white border border-black/10 text-[#0E2A38] hover:bg-[#0E2A38] hover:text-white transition"
-              >
-                <Icon size={15} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-black/5">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-5 text-center text-xs text-[#0E2A38]/45">
-          © Finpay 2025. All Rights Reserved.
-        </div>
-      </div>
-    </footer>
   );
 };
 

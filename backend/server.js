@@ -9,16 +9,36 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "vpc@admin2024";
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "vpc-admin-token-2024-secret";
+const NODE_ENV = process.env.NODE_ENV || "development";
 
 app.use(cors());
 app.use(express.json());
 
+// ── simple logger ────────────────────────────────────────────────────────────
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    console.log(`${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms`);
+  });
+  next();
+});
+
 // ── helpers ──────────────────────────────────────────────────────────────────
-const dataPath = (name) => path.join(__dirname, "data", `${name}.json`);
+const dataDir = path.join(__dirname, "data");
+if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
+
+const dataPath = (name) => path.join(dataDir, `${name}.json`);
 
 function readData(name) {
+  const p = dataPath(name);
+  if (!fs.existsSync(p)) {
+    fs.writeFileSync(p, JSON.stringify([], null, 2));
+    return [];
+  }
   try {
-    return JSON.parse(fs.readFileSync(dataPath(name), "utf8"));
+    const data = JSON.parse(fs.readFileSync(p, "utf8"));
+    return Array.isArray(data) ? data : [];
   } catch {
     return [];
   }
@@ -34,6 +54,24 @@ function authMiddleware(req, res, next) {
   if (token !== ADMIN_TOKEN) return res.status(401).json({ error: "Unauthorized" });
   next();
 }
+
+// ── health ───────────────────────────────────────────────────────────────────
+app.get("/api/health", (req, res) => res.json({ status: "ok", uptime: process.uptime() }));
+
+// ── stats ────────────────────────────────────────────────────────────────────
+app.get("/api/stats", authMiddleware, (req, res) => {
+  const jobs = readData("jobs");
+  const testimonials = readData("testimonials");
+  const contacts = readData("contacts");
+  const services = readData("services");
+
+  res.json({
+    jobs: { total: jobs.length, active: jobs.filter(j => j.active).length },
+    testimonials: { total: testimonials.length },
+    contacts: { total: contacts.length, unread: contacts.filter(c => !c.read).length },
+    services: { total: services.length, active: services.filter(s => s.active).length }
+  });
+});
 
 // ── auth ──────────────────────────────────────────────────────────────────────
 app.post("/api/auth/login", (req, res) => {
@@ -154,4 +192,27 @@ app.delete("/api/services/:id", authMiddleware, (req, res) => {
   res.json({ success: true });
 });
 
-app.listen(PORT, () => console.log(`Vantage API running on http://localhost:${PORT}`));
+// ── production ────────────────────────────────────────────────────────────────
+const frontendPath = path.join(__dirname, "../frontend/dist");
+if (fs.existsSync(frontendPath)) {
+  app.use(express.static(frontendPath));
+  app.get("*", (req, res) => {
+    if (!req.path.startsWith("/api")) {
+      res.sendFile(path.join(frontendPath, "index.html"));
+    } else {
+      res.status(404).json({ error: "API route not found" });
+    }
+  });
+}
+
+// ── error handler ─────────────────────────────────────────────────────────────
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Internal server error" });
+});
+
+app.listen(PORT, () => {
+  console.log(`\n🚀 Vantage API running on http://localhost:${PORT}`);
+  console.log(`🔧 Mode: ${NODE_ENV}`);
+  console.log(`📂 Data directory: ${dataDir}\n`);
+});
