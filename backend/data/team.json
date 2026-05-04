@@ -1,0 +1,20 @@
+[
+  {
+    "id": "team-1",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "name": "Krish Subbiah",
+    "title": "CEO and Partner",
+    "initials": "KS",
+    "bio": "Leads Vantage Point Consulting's vision and strategic direction as CEO and Partner, driving growth across professional services, cloud, and enterprise IT solutions.",
+    "active": true
+  },
+  {
+    "id": "team-2",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "name": "Lalit Mohan",
+    "title": "Head of Talent & Delivery",
+    "initials": "LM",
+    "bio": "Oversees the delivery division, ensuring clients receive top-tier technical expertise across all practice areas, including Oracle and Workday implementations.",
+    "active": true
+  }
+]

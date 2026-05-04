@@ -49,6 +49,18 @@ export const api = {
   updateService: (id: string, data: Partial<Service>) => req<Service>("PUT", `/services/${id}`, data, true),
   deleteService: (id: string) => req<void>("DELETE", `/services/${id}`, undefined, true),
 
+  // achievements (public read, auth write)
+  getAchievements: () => req<Achievement[]>("GET", "/achievements"),
+  createAchievement: (data: Omit<Achievement, "id" | "createdAt">) => req<Achievement>("POST", "/achievements", data, true),
+  updateAchievement: (id: string, data: Partial<Achievement>) => req<Achievement>("PUT", `/achievements/${id}`, data, true),
+  deleteAchievement: (id: string) => req<void>("DELETE", `/achievements/${id}`, undefined, true),
+
+  // team (public read, auth write)
+  getTeam: () => req<TeamMember[]>("GET", "/team"),
+  createTeamMember: (data: Omit<TeamMember, "id" | "createdAt">) => req<TeamMember>("POST", "/team", data, true),
+  updateTeamMember: (id: string, data: Partial<TeamMember>) => req<TeamMember>("PUT", `/team/${id}`, data, true),
+  deleteTeamMember: (id: string) => req<void>("DELETE", `/team/${id}`, undefined, true),
+
   // stats
   getStats: () => req<Stats>("GET", "/stats", undefined, true),
 };
@@ -58,6 +70,27 @@ export interface Stats {
   testimonials: { total: number };
   contacts: { total: number; unread: number };
   services: { total: number; active: number };
+  achievements: { total: number; active: number };
+  team: { total: number; active: number };
+}
+
+export interface Achievement {
+  id: string;
+  createdAt: string;
+  title: string;
+  value: string;
+  description: string;
+  active: boolean;
+}
+
+export interface TeamMember {
+  id: string;
+  createdAt: string;
+  name: string;
+  title: string;
+  initials: string;
+  bio: string;
+  active: boolean;
 }
 
 export interface Job {

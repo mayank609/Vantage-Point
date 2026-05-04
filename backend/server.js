@@ -64,12 +64,16 @@ app.get("/api/stats", authMiddleware, (req, res) => {
   const testimonials = readData("testimonials");
   const contacts = readData("contacts");
   const services = readData("services");
+  const achievements = readData("achievements");
+  const team = readData("team");
 
   res.json({
     jobs: { total: jobs.length, active: jobs.filter(j => j.active).length },
     testimonials: { total: testimonials.length },
     contacts: { total: contacts.length, unread: contacts.filter(c => !c.read).length },
-    services: { total: services.length, active: services.filter(s => s.active).length }
+    services: { total: services.length, active: services.filter(s => s.active).length },
+    achievements: { total: achievements.length, active: achievements.filter(a => a.active).length },
+    team: { total: team.length, active: team.filter(m => m.active).length }
   });
 });
 
@@ -189,6 +193,62 @@ app.delete("/api/services/:id", authMiddleware, (req, res) => {
   const filtered = items.filter((s) => s.id !== req.params.id);
   if (filtered.length === items.length) return res.status(404).json({ error: "Not found" });
   writeData("services", filtered);
+  res.json({ success: true });
+});
+
+// ── achievements ──────────────────────────────────────────────────────────────
+app.get("/api/achievements", (req, res) => res.json(readData("achievements")));
+
+app.post("/api/achievements", authMiddleware, (req, res) => {
+  const items = readData("achievements");
+  const item = { id: uuidv4(), createdAt: new Date().toISOString(), ...req.body };
+  items.push(item);
+  writeData("achievements", items);
+  res.status(201).json(item);
+});
+
+app.put("/api/achievements/:id", authMiddleware, (req, res) => {
+  const items = readData("achievements");
+  const idx = items.findIndex((a) => a.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: "Not found" });
+  items[idx] = { ...items[idx], ...req.body, id: req.params.id };
+  writeData("achievements", items);
+  res.json(items[idx]);
+});
+
+app.delete("/api/achievements/:id", authMiddleware, (req, res) => {
+  const items = readData("achievements");
+  const filtered = items.filter((a) => a.id !== req.params.id);
+  if (filtered.length === items.length) return res.status(404).json({ error: "Not found" });
+  writeData("achievements", filtered);
+  res.json({ success: true });
+});
+
+// ── team ──────────────────────────────────────────────────────────────────────
+app.get("/api/team", (req, res) => res.json(readData("team")));
+
+app.post("/api/team", authMiddleware, (req, res) => {
+  const items = readData("team");
+  const item = { id: uuidv4(), createdAt: new Date().toISOString(), ...req.body };
+  items.push(item);
+  writeData("team", items);
+  res.status(201).json(item);
+});
+
+app.put("/api/team/:id", authMiddleware, (req, res) => {
+  const items = readData("team");
+  const idx = items.findIndex((m) => m.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: "Not found" });
+  items[idx] = { ...items[idx], ...req.body, id: req.params.id };
+  writeData("team", items);
+  res.json(items[idx]);
+});
+
+app.delete("/api/team/:id", authMiddleware, (req, res) => {
+  const items = readData("team");
+  const filtered = items.filter((m) => m.id !== req.params.id);
+  if (filtered.length === items.length) return res.status(404).json({ error: "Not found" });
+  writeData("team", filtered);
   res.json({ success: true });
 });
 

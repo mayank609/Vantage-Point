@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -10,10 +10,16 @@ import { useParallax } from "../hooks/useParallax";
 const About: React.FC = () => {
   const imgParallax = useParallax(0.15);
 
-  const team = [
-    { initials: "KS", name: "Krish Subbiah", title: "CEO and Partner", bio: "Leads Vantage Point Consulting's vision and strategic direction as CEO and Partner, driving growth across professional services, cloud, and enterprise IT solutions." },
-    { initials: "LM", name: "Lalit Mohan", title: "Head of Talent & Delivery", bio: "Oversees the delivery division, ensuring clients receive top-tier technical expertise across all practice areas, including Oracle and Workday implementations." },
-  ];
+  const [team, setTeam] = useState<{ initials: string; name: string; title: string; bio: string }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/team")
+      .then((r) => r.json())
+      .then((data: { initials: string; name: string; title: string; bio: string; active: boolean }[]) =>
+        setTeam(data.filter((m) => m.active))
+      )
+      .catch(() => setTeam([]));
+  }, []);
 
   const industries = [
     "Financial Services", "Healthcare", "Life Sciences", "Insurance",
@@ -120,7 +126,7 @@ const About: React.FC = () => {
           </motion.div>
           <motion.div
             initial="hidden" whileInView="show" variants={stagger(0.05, 0.13)} viewport={viewportOnce}
-            className="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto"
+            className={`grid gap-8 mx-auto ${team.length <= 2 ? "sm:grid-cols-2 max-w-2xl" : team.length === 3 ? "sm:grid-cols-3 max-w-3xl" : "sm:grid-cols-2 lg:grid-cols-4"}`}
           >
             {team.map((member) => (
               <motion.div

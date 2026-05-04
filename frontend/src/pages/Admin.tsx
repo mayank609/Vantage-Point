@@ -3,10 +3,10 @@ import {
   LayoutDashboard, Briefcase, Star, MessageSquare, Settings,
   LogOut, Plus, Pencil, Trash2, Check, X, Eye, EyeOff,
   Users, Mail, TrendingUp, ChevronRight, AlertCircle, Loader2,
+  Trophy, Award,
 } from "lucide-react";
-import { api, Job, Testimonial, Contact, Service, Stats } from "../lib/api";
+import { api, Job, Testimonial, Contact, Service, Achievement, TeamMember, Stats } from "../lib/api";
 
-// ── tiny helpers ──────────────────────────────────────────────────────────────
 function cls(...args: (string | false | undefined)[]) {
   return args.filter(Boolean).join(" ");
 }
@@ -96,8 +96,10 @@ const NAV = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { id: "jobs", label: "Jobs", icon: Briefcase },
   { id: "testimonials", label: "Testimonials", icon: Star },
-  { id: "contacts", label: "Contacts", icon: MessageSquare },
+  { id: "contacts", label: "Queries", icon: MessageSquare },
   { id: "services", label: "Services", icon: Settings },
+  { id: "achievements", label: "Achievements", icon: Trophy },
+  { id: "team", label: "Team Members", icon: Award },
 ];
 
 function Sidebar({ tab, setTab, onLogout }: { tab: string; setTab: (t: string) => void; onLogout: () => void }) {
@@ -139,7 +141,7 @@ function Sidebar({ tab, setTab, onLogout }: { tab: string; setTab: (t: string) =
   );
 }
 
-// ── stat card ─────────────────────────────────────────────────────────────────
+// ── shared ui ─────────────────────────────────────────────────────────────────
 function StatCard({ label, value, icon: Icon, color }: { label: string; value: number; icon: React.ElementType; color: string }) {
   return (
     <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-5 flex items-center gap-4">
@@ -154,7 +156,6 @@ function StatCard({ label, value, icon: Icon, color }: { label: string; value: n
   );
 }
 
-// ── modal ─────────────────────────────────────────────────────────────────────
 function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
@@ -169,7 +170,6 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
   );
 }
 
-// ── form field ────────────────────────────────────────────────────────────────
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
@@ -182,7 +182,28 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 const inputCls = "w-full rounded-xl border border-black/10 bg-[#F4F4F7] px-4 py-2.5 text-sm text-[#0E2A38] outline-none focus:border-[#0B74B0] focus:ring-2 focus:ring-[#0B74B0]/10 transition";
 const textareaCls = inputCls + " resize-none";
 
-// ── confirm delete ────────────────────────────────────────────────────────────
+function Toggle({ value, onChange, label }: { value: boolean; onChange: (v: boolean) => void; label: string }) {
+  return (
+    <label className="flex items-center gap-3 cursor-pointer">
+      <div onClick={() => onChange(!value)} className={cls("h-5 w-9 rounded-full transition flex items-center px-0.5", value ? "bg-[#0B74B0]" : "bg-black/15")}>
+        <div className={cls("h-4 w-4 rounded-full bg-white shadow transition-transform", value ? "translate-x-4" : "translate-x-0")} />
+      </div>
+      <span className="text-sm text-[#0E2A38]/70">{label}</span>
+    </label>
+  );
+}
+
+function SaveCancel({ onCancel, saving }: { onCancel: () => void; saving: boolean }) {
+  return (
+    <div className="flex gap-3 justify-end pt-2">
+      <button type="button" onClick={onCancel} className="px-4 py-2 rounded-xl border border-black/10 text-sm text-[#0E2A38]/60 hover:bg-[#F4F4F7] transition">Cancel</button>
+      <button type="submit" disabled={saving} className="px-4 py-2 rounded-xl bg-[#0B74B0] text-white text-sm font-medium hover:bg-[#096396] transition disabled:opacity-60 flex items-center gap-1.5">
+        {saving && <Loader2 size={13} className="animate-spin" />} Save
+      </button>
+    </div>
+  );
+}
+
 function ConfirmDelete({ label, onConfirm, onCancel }: { label: string; onConfirm: () => void; onCancel: () => void }) {
   return (
     <Modal title="Confirm Delete" onClose={onCancel}>
@@ -195,8 +216,21 @@ function ConfirmDelete({ label, onConfirm, onCancel }: { label: string; onConfir
   );
 }
 
-// ── dashboard tab ─────────────────────────────────────────────────────────────
-function Dashboard({ jobs, testimonials, contacts, services }: { jobs: Job[]; testimonials: Testimonial[]; contacts: Contact[]; services: Service[] }) {
+function EmptyState({ label, sub }: { label: string; sub: string }) {
+  return (
+    <div className="bg-white rounded-2xl border border-black/5 border-dashed p-12 text-center">
+      <div className="text-[#0E2A38]/20 text-4xl mb-3">○</div>
+      <div className="font-semibold text-[#0E2A38]/50 text-sm">{label}</div>
+      <div className="text-xs text-[#0E2A38]/30 mt-1">{sub}</div>
+    </div>
+  );
+}
+
+// ── dashboard ─────────────────────────────────────────────────────────────────
+function Dashboard({ jobs, testimonials, contacts, services, achievements, team }: {
+  jobs: Job[]; testimonials: Testimonial[]; contacts: Contact[]; services: Service[];
+  achievements: Achievement[]; team: TeamMember[];
+}) {
   const unread = contacts.filter((c) => !c.read);
   return (
     <div className="space-y-6">
@@ -204,17 +238,19 @@ function Dashboard({ jobs, testimonials, contacts, services }: { jobs: Job[]; te
         <h2 className="text-xl font-semibold text-[#0E2A38] mb-1">Overview</h2>
         <p className="text-sm text-[#0E2A38]/50">Welcome back. Here's what's happening.</p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard label="Active Jobs" value={jobs.filter((j) => j.active).length} icon={Briefcase} color="bg-[#0B74B0]" />
         <StatCard label="Testimonials" value={testimonials.length} icon={Star} color="bg-[#75479C]" />
-        <StatCard label="New Messages" value={unread.length} icon={Mail} color="bg-emerald-500" />
-        <StatCard label="Services" value={services.filter((s) => s.active).length} icon={TrendingUp} color="bg-[#0E2A38]" />
+        <StatCard label="Unread Queries" value={unread.length} icon={Mail} color="bg-emerald-500" />
+        <StatCard label="Active Services" value={services.filter((s) => s.active).length} icon={TrendingUp} color="bg-[#0E2A38]" />
+        <StatCard label="Achievements" value={achievements.filter((a) => a.active).length} icon={Trophy} color="bg-amber-500" />
+        <StatCard label="Team Members" value={team.filter((t) => t.active).length} icon={Award} color="bg-rose-500" />
       </div>
       {unread.length > 0 && (
         <div className="bg-white rounded-2xl border border-black/5 shadow-sm p-5">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-2 w-2 rounded-full bg-emerald-500" />
-            <h3 className="font-semibold text-[#0E2A38] text-sm">Unread Messages ({unread.length})</h3>
+            <h3 className="font-semibold text-[#0E2A38] text-sm">Unread Queries ({unread.length})</h3>
           </div>
           <div className="space-y-3">
             {unread.slice(0, 5).map((c) => (
@@ -250,7 +286,8 @@ function JobsTab({ jobs, reload }: { jobs: Job[]; reload: () => void }) {
   function openAdd() { setForm({ ...EMPTY_JOB }); setEditing(null); setModal("add"); }
   function openEdit(j: Job) { setForm({ title: j.title, department: j.department, location: j.location, type: j.type, description: j.description, requirements: j.requirements, active: j.active }); setEditing(j); setModal("edit"); }
 
-  async function save() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     setSaving(true);
     try {
       if (modal === "add") await api.createJob(form);
@@ -300,8 +337,8 @@ function JobsTab({ jobs, reload }: { jobs: Job[]; reload: () => void }) {
       </div>
       {modal && (
         <Modal title={modal === "add" ? "Add Job" : "Edit Job"} onClose={() => setModal(null)}>
-          <div className="space-y-4">
-            <Field label="Job Title"><input className={inputCls} value={form.title} onChange={(e) => f("title", e.target.value)} placeholder="e.g. Senior Software Engineer" /></Field>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Field label="Job Title"><input className={inputCls} value={form.title} onChange={(e) => f("title", e.target.value)} placeholder="e.g. Senior Software Engineer" required /></Field>
             <div className="grid grid-cols-2 gap-4">
               <Field label="Department"><input className={inputCls} value={form.department} onChange={(e) => f("department", e.target.value)} placeholder="e.g. Information Technology" /></Field>
               <Field label="Type">
@@ -310,22 +347,12 @@ function JobsTab({ jobs, reload }: { jobs: Job[]; reload: () => void }) {
                 </select>
               </Field>
             </div>
-            <Field label="Location"><input className={inputCls} value={form.location} onChange={(e) => f("location", e.target.value)} placeholder="e.g. Remote / Toronto, ON" /></Field>
+            <Field label="Location"><input className={inputCls} value={form.location} onChange={(e) => f("location", e.target.value)} placeholder="e.g. Remote / New York, NY" /></Field>
             <Field label="Description"><textarea className={textareaCls} rows={3} value={form.description} onChange={(e) => f("description", e.target.value)} placeholder="Role overview..." /></Field>
             <Field label="Requirements"><textarea className={textareaCls} rows={2} value={form.requirements} onChange={(e) => f("requirements", e.target.value)} placeholder="Skills, years of experience..." /></Field>
-            <label className="flex items-center gap-3 cursor-pointer">
-              <div onClick={() => f("active", !form.active)} className={cls("h-5 w-9 rounded-full transition flex items-center px-0.5", form.active ? "bg-[#0B74B0]" : "bg-black/15")}>
-                <div className={cls("h-4 w-4 rounded-full bg-white shadow transition-transform", form.active ? "translate-x-4" : "translate-x-0")} />
-              </div>
-              <span className="text-sm text-[#0E2A38]/70">Active listing</span>
-            </label>
-            <div className="flex gap-3 justify-end pt-2">
-              <button onClick={() => setModal(null)} className="px-4 py-2 rounded-xl border border-black/10 text-sm text-[#0E2A38]/60 hover:bg-[#F4F4F7] transition">Cancel</button>
-              <button onClick={save} disabled={saving} className="px-4 py-2 rounded-xl bg-[#0B74B0] text-white text-sm font-medium hover:bg-[#096396] transition disabled:opacity-60 flex items-center gap-1.5">
-                {saving && <Loader2 size={13} className="animate-spin" />} Save
-              </button>
-            </div>
-          </div>
+            <Toggle value={form.active} onChange={(v) => f("active", v)} label="Active listing" />
+            <SaveCancel onCancel={() => setModal(null)} saving={saving} />
+          </form>
         </Modal>
       )}
       {delTarget && <ConfirmDelete label={delTarget.title} onConfirm={del} onCancel={() => setDelTarget(null)} />}
@@ -346,7 +373,8 @@ function TestimonialsTab({ testimonials, reload }: { testimonials: Testimonial[]
   function openAdd() { setForm({ ...EMPTY_TEST }); setEditing(null); setModal("add"); }
   function openEdit(t: Testimonial) { setForm({ quote: t.quote, name: t.name, title: t.title, metric: t.metric, metricLabel: t.metricLabel, active: t.active }); setEditing(t); setModal("edit"); }
 
-  async function save() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     setSaving(true);
     try {
       if (modal === "add") await api.createTestimonial(form);
@@ -396,27 +424,17 @@ function TestimonialsTab({ testimonials, reload }: { testimonials: Testimonial[]
       </div>
       {modal && (
         <Modal title={modal === "add" ? "Add Testimonial" : "Edit Testimonial"} onClose={() => setModal(null)}>
-          <div className="space-y-4">
-            <Field label="Quote"><textarea className={textareaCls} rows={3} value={form.quote} onChange={(e) => f("quote", e.target.value)} placeholder="Client's testimonial..." /></Field>
-            <Field label="Client Name"><input className={inputCls} value={form.name} onChange={(e) => f("name", e.target.value)} placeholder="e.g. Jane Smith" /></Field>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Field label="Quote"><textarea className={textareaCls} rows={3} value={form.quote} onChange={(e) => f("quote", e.target.value)} placeholder="Client's testimonial..." required /></Field>
+            <Field label="Client Name"><input className={inputCls} value={form.name} onChange={(e) => f("name", e.target.value)} placeholder="e.g. Jane Smith" required /></Field>
             <Field label="Title / Company"><input className={inputCls} value={form.title} onChange={(e) => f("title", e.target.value)} placeholder="e.g. CEO, Acme Corp" /></Field>
             <div className="grid grid-cols-2 gap-4">
               <Field label="Metric (headline)"><input className={inputCls} value={form.metric} onChange={(e) => f("metric", e.target.value)} placeholder="e.g. 48 hrs" /></Field>
               <Field label="Metric Label"><input className={inputCls} value={form.metricLabel} onChange={(e) => f("metricLabel", e.target.value)} placeholder="e.g. to first shortlist" /></Field>
             </div>
-            <label className="flex items-center gap-3 cursor-pointer">
-              <div onClick={() => f("active", !form.active)} className={cls("h-5 w-9 rounded-full transition flex items-center px-0.5", form.active ? "bg-[#0B74B0]" : "bg-black/15")}>
-                <div className={cls("h-4 w-4 rounded-full bg-white shadow transition-transform", form.active ? "translate-x-4" : "translate-x-0")} />
-              </div>
-              <span className="text-sm text-[#0E2A38]/70">Show on website</span>
-            </label>
-            <div className="flex gap-3 justify-end pt-2">
-              <button onClick={() => setModal(null)} className="px-4 py-2 rounded-xl border border-black/10 text-sm text-[#0E2A38]/60 hover:bg-[#F4F4F7] transition">Cancel</button>
-              <button onClick={save} disabled={saving} className="px-4 py-2 rounded-xl bg-[#0B74B0] text-white text-sm font-medium hover:bg-[#096396] transition disabled:opacity-60 flex items-center gap-1.5">
-                {saving && <Loader2 size={13} className="animate-spin" />} Save
-              </button>
-            </div>
-          </div>
+            <Toggle value={form.active} onChange={(v) => f("active", v)} label="Show on website" />
+            <SaveCancel onCancel={() => setModal(null)} saving={saving} />
+          </form>
         </Modal>
       )}
       {delTarget && <ConfirmDelete label={`"${delTarget.name}"`} onConfirm={del} onCancel={() => setDelTarget(null)} />}
@@ -424,7 +442,7 @@ function TestimonialsTab({ testimonials, reload }: { testimonials: Testimonial[]
   );
 }
 
-// ── contacts tab ──────────────────────────────────────────────────────────────
+// ── contacts / queries tab ────────────────────────────────────────────────────
 function ContactsTab({ contacts, reload }: { contacts: Contact[]; reload: () => void }) {
   const [delTarget, setDelTarget] = useState<Contact | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -445,7 +463,7 @@ function ContactsTab({ contacts, reload }: { contacts: Contact[]; reload: () => 
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-xl font-semibold text-[#0E2A38]">Contact Messages</h2>
+        <h2 className="text-xl font-semibold text-[#0E2A38]">Contact Queries</h2>
         <p className="text-sm text-[#0E2A38]/50">{contacts.filter((c) => !c.read).length} unread · {contacts.length} total</p>
       </div>
       <div className="space-y-3">
@@ -469,7 +487,7 @@ function ContactsTab({ contacts, reload }: { contacts: Contact[]; reload: () => 
             {expanded === c.id && (
               <div className="border-t border-black/5 px-5 py-4 bg-[#F4F4F7]">
                 <p className="text-sm text-[#0E2A38]/70 leading-relaxed mb-4">{c.message}</p>
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                   <button onClick={() => toggleRead(c)} className={cls("inline-flex items-center gap-1.5 h-8 px-3 rounded-xl text-xs font-medium transition", c.read ? "border border-black/10 text-[#0E2A38]/60 hover:bg-white" : "bg-emerald-500 text-white hover:bg-emerald-600")}>
                     <Check size={12} /> {c.read ? "Mark Unread" : "Mark Read"}
                   </button>
@@ -484,7 +502,7 @@ function ContactsTab({ contacts, reload }: { contacts: Contact[]; reload: () => 
             )}
           </div>
         ))}
-        {contacts.length === 0 && <EmptyState label="No messages yet" sub="Contact form submissions will appear here." />}
+        {contacts.length === 0 && <EmptyState label="No queries yet" sub="Contact form submissions will appear here." />}
       </div>
       {delTarget && <ConfirmDelete label={`message from ${delTarget.firstName} ${delTarget.lastName}`} onConfirm={del} onCancel={() => setDelTarget(null)} />}
     </div>
@@ -504,7 +522,8 @@ function ServicesTab({ services, reload }: { services: Service[]; reload: () => 
   function openAdd() { setForm({ ...EMPTY_SVC }); setEditing(null); setModal("add"); }
   function openEdit(s: Service) { setForm({ name: s.name, category: s.category, description: s.description, active: s.active }); setEditing(s); setModal("edit"); }
 
-  async function save() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     setSaving(true);
     try {
       if (modal === "add") await api.createService(form);
@@ -554,23 +573,13 @@ function ServicesTab({ services, reload }: { services: Service[]; reload: () => 
       </div>
       {modal && (
         <Modal title={modal === "add" ? "Add Service" : "Edit Service"} onClose={() => setModal(null)}>
-          <div className="space-y-4">
-            <Field label="Service Name"><input className={inputCls} value={form.name} onChange={(e) => f("name", e.target.value)} placeholder="e.g. Talent Acquisition" /></Field>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Field label="Service Name"><input className={inputCls} value={form.name} onChange={(e) => f("name", e.target.value)} placeholder="e.g. Talent Acquisition" required /></Field>
             <Field label="Category"><input className={inputCls} value={form.category} onChange={(e) => f("category", e.target.value)} placeholder="e.g. Staffing, Technology" /></Field>
             <Field label="Description"><textarea className={textareaCls} rows={3} value={form.description} onChange={(e) => f("description", e.target.value)} placeholder="Brief description of this service..." /></Field>
-            <label className="flex items-center gap-3 cursor-pointer">
-              <div onClick={() => f("active", !form.active)} className={cls("h-5 w-9 rounded-full transition flex items-center px-0.5", form.active ? "bg-[#0B74B0]" : "bg-black/15")}>
-                <div className={cls("h-4 w-4 rounded-full bg-white shadow transition-transform", form.active ? "translate-x-4" : "translate-x-0")} />
-              </div>
-              <span className="text-sm text-[#0E2A38]/70">Show on website</span>
-            </label>
-            <div className="flex gap-3 justify-end pt-2">
-              <button onClick={() => setModal(null)} className="px-4 py-2 rounded-xl border border-black/10 text-sm text-[#0E2A38]/60 hover:bg-[#F4F4F7] transition">Cancel</button>
-              <button onClick={save} disabled={saving} className="px-4 py-2 rounded-xl bg-[#0B74B0] text-white text-sm font-medium hover:bg-[#096396] transition disabled:opacity-60 flex items-center gap-1.5">
-                {saving && <Loader2 size={13} className="animate-spin" />} Save
-              </button>
-            </div>
-          </div>
+            <Toggle value={form.active} onChange={(v) => f("active", v)} label="Show on website" />
+            <SaveCancel onCancel={() => setModal(null)} saving={saving} />
+          </form>
         </Modal>
       )}
       {delTarget && <ConfirmDelete label={delTarget.name} onConfirm={del} onCancel={() => setDelTarget(null)} />}
@@ -578,13 +587,158 @@ function ServicesTab({ services, reload }: { services: Service[]; reload: () => 
   );
 }
 
-// ── empty state ───────────────────────────────────────────────────────────────
-function EmptyState({ label, sub }: { label: string; sub: string }) {
+// ── achievements tab ──────────────────────────────────────────────────────────
+const EMPTY_ACH: Omit<Achievement, "id" | "createdAt"> = { title: "", value: "", description: "", active: true };
+
+function AchievementsTab({ achievements, reload }: { achievements: Achievement[]; reload: () => void }) {
+  const [modal, setModal] = useState<null | "add" | "edit">(null);
+  const [editing, setEditing] = useState<Achievement | null>(null);
+  const [form, setForm] = useState({ ...EMPTY_ACH });
+  const [delTarget, setDelTarget] = useState<Achievement | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  function openAdd() { setForm({ ...EMPTY_ACH }); setEditing(null); setModal("add"); }
+  function openEdit(a: Achievement) { setForm({ title: a.title, value: a.value, description: a.description, active: a.active }); setEditing(a); setModal("edit"); }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      if (modal === "add") await api.createAchievement(form);
+      else if (editing) await api.updateAchievement(editing.id, form);
+      reload(); setModal(null);
+    } catch (e: unknown) { alert(e instanceof Error ? e.message : "Error"); }
+    finally { setSaving(false); }
+  }
+
+  async function del() {
+    if (!delTarget) return;
+    await api.deleteAchievement(delTarget.id);
+    setDelTarget(null); reload();
+  }
+
+  const f = (k: keyof typeof form, v: string | boolean) => setForm((p) => ({ ...p, [k]: v }));
+
   return (
-    <div className="bg-white rounded-2xl border border-black/5 border-dashed p-12 text-center">
-      <div className="text-[#0E2A38]/20 text-4xl mb-3">○</div>
-      <div className="font-semibold text-[#0E2A38]/50 text-sm">{label}</div>
-      <div className="text-xs text-[#0E2A38]/30 mt-1">{sub}</div>
+    <div className="space-y-5">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-[#0E2A38]">Achievements</h2>
+          <p className="text-sm text-[#0E2A38]/50">{achievements.length} achievement{achievements.length !== 1 ? "s" : ""}</p>
+        </div>
+        <button onClick={openAdd} className="inline-flex items-center gap-1.5 h-9 px-4 rounded-xl bg-[#0B74B0] text-white text-sm font-medium hover:bg-[#096396] transition">
+          <Plus size={15} /> Add Achievement
+        </button>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {achievements.map((a) => (
+          <div key={a.id} className="bg-white rounded-2xl border border-black/5 shadow-sm p-5">
+            <div className="flex items-start justify-between gap-2 mb-2">
+              <div className="text-3xl font-bold text-[#0B74B0] tracking-tight">{a.value}</div>
+              <div className="flex gap-2 shrink-0">
+                <button onClick={() => openEdit(a)} className="h-8 w-8 rounded-xl border border-black/10 grid place-items-center text-[#0E2A38]/50 hover:text-[#0B74B0] hover:border-[#0B74B0]/30 transition"><Pencil size={14} /></button>
+                <button onClick={() => setDelTarget(a)} className="h-8 w-8 rounded-xl border border-black/10 grid place-items-center text-[#0E2A38]/50 hover:text-red-500 hover:border-red-200 transition"><Trash2 size={14} /></button>
+              </div>
+            </div>
+            <div className="font-semibold text-[#0E2A38] text-sm mb-1">{a.title}</div>
+            <p className="text-xs text-[#0E2A38]/55 line-clamp-2 mb-3">{a.description}</p>
+            <div className={cls("text-[10px] font-semibold px-2 py-0.5 rounded-full inline-block", a.active ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-500")}>{a.active ? "Active" : "Hidden"}</div>
+          </div>
+        ))}
+        {achievements.length === 0 && <div className="sm:col-span-2 lg:col-span-3"><EmptyState label="No achievements yet" sub="Add milestones and stats to showcase on your website." /></div>}
+      </div>
+      {modal && (
+        <Modal title={modal === "add" ? "Add Achievement" : "Edit Achievement"} onClose={() => setModal(null)}>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Field label="Title"><input className={inputCls} value={form.title} onChange={(e) => f("title", e.target.value)} placeholder="e.g. Clients Served" required /></Field>
+            <Field label="Value / Metric"><input className={inputCls} value={form.value} onChange={(e) => f("value", e.target.value)} placeholder="e.g. 500+" required /></Field>
+            <Field label="Description"><textarea className={textareaCls} rows={3} value={form.description} onChange={(e) => f("description", e.target.value)} placeholder="Brief description of this achievement..." /></Field>
+            <Toggle value={form.active} onChange={(v) => f("active", v)} label="Show on website" />
+            <SaveCancel onCancel={() => setModal(null)} saving={saving} />
+          </form>
+        </Modal>
+      )}
+      {delTarget && <ConfirmDelete label={delTarget.title} onConfirm={del} onCancel={() => setDelTarget(null)} />}
+    </div>
+  );
+}
+
+// ── team tab ──────────────────────────────────────────────────────────────────
+const EMPTY_MEMBER: Omit<TeamMember, "id" | "createdAt"> = { name: "", title: "", initials: "", bio: "", active: true };
+
+function TeamTab({ team, reload }: { team: TeamMember[]; reload: () => void }) {
+  const [modal, setModal] = useState<null | "add" | "edit">(null);
+  const [editing, setEditing] = useState<TeamMember | null>(null);
+  const [form, setForm] = useState({ ...EMPTY_MEMBER });
+  const [delTarget, setDelTarget] = useState<TeamMember | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  function openAdd() { setForm({ ...EMPTY_MEMBER }); setEditing(null); setModal("add"); }
+  function openEdit(m: TeamMember) { setForm({ name: m.name, title: m.title, initials: m.initials, bio: m.bio, active: m.active }); setEditing(m); setModal("edit"); }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      if (modal === "add") await api.createTeamMember(form);
+      else if (editing) await api.updateTeamMember(editing.id, form);
+      reload(); setModal(null);
+    } catch (e: unknown) { alert(e instanceof Error ? e.message : "Error"); }
+    finally { setSaving(false); }
+  }
+
+  async function del() {
+    if (!delTarget) return;
+    await api.deleteTeamMember(delTarget.id);
+    setDelTarget(null); reload();
+  }
+
+  const f = (k: keyof typeof form, v: string | boolean) => setForm((p) => ({ ...p, [k]: v }));
+
+  return (
+    <div className="space-y-5">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-[#0E2A38]">Team Members</h2>
+          <p className="text-sm text-[#0E2A38]/50">{team.length} member{team.length !== 1 ? "s" : ""}</p>
+        </div>
+        <button onClick={openAdd} className="inline-flex items-center gap-1.5 h-9 px-4 rounded-xl bg-[#0B74B0] text-white text-sm font-medium hover:bg-[#096396] transition">
+          <Plus size={15} /> Add Member
+        </button>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {team.map((m) => (
+          <div key={m.id} className="bg-white rounded-2xl border border-black/5 shadow-sm p-5 text-center">
+            <div className="h-16 w-16 rounded-2xl bg-[#0E2A38] text-[#0B74B0] grid place-items-center text-xl font-bold mx-auto mb-4">
+              {m.initials}
+            </div>
+            <div className="font-semibold text-[#0E2A38] mb-0.5">{m.name}</div>
+            <div className="text-xs text-[#0B74B0] font-semibold uppercase tracking-wide mb-3">{m.title}</div>
+            <p className="text-xs text-[#0E2A38]/55 line-clamp-2 mb-3">{m.bio}</p>
+            <div className={cls("text-[10px] font-semibold px-2 py-0.5 rounded-full inline-block mb-4", m.active ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-500")}>{m.active ? "Active" : "Hidden"}</div>
+            <div className="flex justify-center gap-2">
+              <button onClick={() => openEdit(m)} className="h-8 w-8 rounded-xl border border-black/10 grid place-items-center text-[#0E2A38]/50 hover:text-[#0B74B0] hover:border-[#0B74B0]/30 transition"><Pencil size={14} /></button>
+              <button onClick={() => setDelTarget(m)} className="h-8 w-8 rounded-xl border border-black/10 grid place-items-center text-[#0E2A38]/50 hover:text-red-500 hover:border-red-200 transition"><Trash2 size={14} /></button>
+            </div>
+          </div>
+        ))}
+        {team.length === 0 && <div className="sm:col-span-2 lg:col-span-3"><EmptyState label="No team members yet" sub="Add your first team member to showcase on the About page." /></div>}
+      </div>
+      {modal && (
+        <Modal title={modal === "add" ? "Add Team Member" : "Edit Team Member"} onClose={() => setModal(null)}>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Field label="Full Name"><input className={inputCls} value={form.name} onChange={(e) => f("name", e.target.value)} placeholder="e.g. Jane Smith" required /></Field>
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Job Title"><input className={inputCls} value={form.title} onChange={(e) => f("title", e.target.value)} placeholder="e.g. VP of Sales" /></Field>
+              <Field label="Initials (2 chars)"><input className={inputCls} value={form.initials} onChange={(e) => f("initials", e.target.value.toUpperCase().slice(0, 2))} placeholder="e.g. JS" maxLength={2} /></Field>
+            </div>
+            <Field label="Bio"><textarea className={textareaCls} rows={3} value={form.bio} onChange={(e) => f("bio", e.target.value)} placeholder="Short bio for this team member..." /></Field>
+            <Toggle value={form.active} onChange={(v) => f("active", v)} label="Show on website" />
+            <SaveCancel onCancel={() => setModal(null)} saving={saving} />
+          </form>
+        </Modal>
+      )}
+      {delTarget && <ConfirmDelete label={delTarget.name} onConfirm={del} onCancel={() => setDelTarget(null)} />}
     </div>
   );
 }
@@ -597,21 +751,26 @@ export default function Admin() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [services, setServices] = useState<Service[]>([]);
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [team, setTeam] = useState<TeamMember[]>([]);
+  const [, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchAll = useCallback(async () => {
     if (!authed) return;
     setLoading(true);
     try {
-      const [j, t, c, s, st] = await Promise.all([
+      const [j, t, c, s, a, tm, st] = await Promise.all([
         api.getJobs(),
         api.getTestimonials(),
         api.getContacts(),
         api.getServices(),
-        api.getStats()
+        api.getAchievements(),
+        api.getTeam(),
+        api.getStats(),
       ]);
-      setJobs(j); setTestimonials(t); setContacts(c); setServices(s); setStats(st);
+      setJobs(j); setTestimonials(t); setContacts(c); setServices(s);
+      setAchievements(a); setTeam(tm); setStats(st);
     } catch { /* token may be stale */ }
     finally { setLoading(false); }
   }, [authed]);
@@ -630,11 +789,13 @@ export default function Admin() {
           </div>
         ) : (
           <>
-            {tab === "dashboard" && <Dashboard jobs={jobs} testimonials={testimonials} contacts={contacts} services={services} />}
+            {tab === "dashboard" && <Dashboard jobs={jobs} testimonials={testimonials} contacts={contacts} services={services} achievements={achievements} team={team} />}
             {tab === "jobs" && <JobsTab jobs={jobs} reload={fetchAll} />}
             {tab === "testimonials" && <TestimonialsTab testimonials={testimonials} reload={fetchAll} />}
             {tab === "contacts" && <ContactsTab contacts={contacts} reload={fetchAll} />}
             {tab === "services" && <ServicesTab services={services} reload={fetchAll} />}
+            {tab === "achievements" && <AchievementsTab achievements={achievements} reload={fetchAll} />}
+            {tab === "team" && <TeamTab team={team} reload={fetchAll} />}
           </>
         )}
       </main>
