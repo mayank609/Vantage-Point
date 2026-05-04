@@ -13,8 +13,6 @@ const About: React.FC = () => {
   const team = [
     { initials: "KS", name: "Krish Subbiah", title: "CEO and Partner", bio: "Leads Vantage Point Consulting's vision and strategic direction as CEO and Partner, driving growth across professional services, cloud, and enterprise IT solutions." },
     { initials: "LM", name: "Lalit Mohan", title: "Head of Talent & Delivery", bio: "Oversees the delivery division, ensuring clients receive top-tier technical expertise across all practice areas, including Oracle and Workday implementations." },
-    { initials: "AE", name: "Adam Elkind", title: "CEO", bio: "Executive leadership focused on driving client outcomes and expanding Vantage Point's enterprise services reach across the United States." },
-    { initials: "RW", name: "Rachael Well", title: "Vice President, Sales & Account Management", bio: "Brings 15+ years in enterprise human capital management with a focus on strategic partnerships, AI integrations, and revenue growth." },
   ];
 
   const industries = [
@@ -122,7 +120,7 @@ const About: React.FC = () => {
           </motion.div>
           <motion.div
             initial="hidden" whileInView="show" variants={stagger(0.05, 0.13)} viewport={viewportOnce}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto"
           >
             {team.map((member) => (
               <motion.div
