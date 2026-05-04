@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowUpRight, CheckCircle, Briefcase } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -14,9 +14,6 @@ type PortalJob = {
 const Careers: React.FC = () => {
   const JOB_PORTAL_URL =
     "https://www1.jobdiva.com/portal/?a=cijdnwq7sln7blp85ftqmzs8m5n2cp09a3b4hy73yc8p2wtdywnhut9bd2zh20pn&compid=0&t=1777486697372#/";
-  const JOB_FEED_URL =
-    "https://www1.jobdiva.com/candidates/myjobs/getportaljobs.jsp?a=cijdnwq7sln7blp85ftqmzs8m5n2cp09a3b4hy73yc8p2wtdywnhut9bd2zh20pn&jobdescription=0&noofjobs=24";
-  const CORS_PROXY = "https://api.allorigins.win/raw?url=";
 
   const benefits = [
     { title: "Swift Hiring Process", desc: "We collaborate with employers who prioritize efficient hiring that respects the candidate's time at every step." },
@@ -33,15 +30,13 @@ const Careers: React.FC = () => {
   const [loadingJobs, setLoadingJobs] = useState(true);
   const [jobsError, setJobsError] = useState("");
 
-  const jobsFeedViaProxy = useMemo(() => `${CORS_PROXY}${encodeURIComponent(JOB_FEED_URL)}`, [JOB_FEED_URL]);
-
   useEffect(() => {
     const loadJobs = async () => {
       try {
         setLoadingJobs(true);
         setJobsError("");
 
-        const response = await fetch(jobsFeedViaProxy);
+        const response = await fetch("/api/jobs/feed");
         if (!response.ok) {
           throw new Error(`Unable to fetch jobs (${response.status})`);
         }
@@ -82,7 +77,7 @@ const Careers: React.FC = () => {
     };
 
     void loadJobs();
-  }, [jobsFeedViaProxy]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#F4F4F7] text-[#0E2A38] antialiased" style={{ fontFamily: "Manrope, ui-sans-serif, system-ui" }}>
