@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import {
   LayoutDashboard, Briefcase, Star, MessageSquare, Settings,
   LogOut, Plus, Pencil, Trash2, Check, X, Eye, EyeOff,
   Users, Mail, TrendingUp, ChevronRight, AlertCircle, Loader2,
-  Trophy, Award,
+  Trophy, Award, ImageIcon, Upload,
 } from "lucide-react";
 import { api, Job, Testimonial, Contact, Service, Achievement, TeamMember, Stats } from "../lib/api";
 
@@ -193,6 +193,59 @@ function Toggle({ value, onChange, label }: { value: boolean; onChange: (v: bool
   );
 }
 
+function ImageUpload({ value, onChange, label = "Photo" }: { value: string; onChange: (v: string) => void; label?: string }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 3 * 1024 * 1024) { alert("Image must be under 3 MB."); return; }
+    const reader = new FileReader();
+    reader.onload = () => onChange(reader.result as string);
+    reader.readAsDataURL(file);
+  }
+
+  return (
+    <div>
+      <label className="block text-xs font-semibold text-[#0E2A38]/50 uppercase tracking-wider mb-2">{label}</label>
+      <div className="flex items-center gap-4">
+        {value ? (
+          <div className="relative shrink-0">
+            <img src={value} alt="Preview" className="h-20 w-20 rounded-2xl object-cover border border-black/10 shadow-sm" />
+            <button
+              type="button"
+              onClick={() => { onChange(""); if (inputRef.current) inputRef.current.value = ""; }}
+              className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-red-500 hover:bg-red-600 text-white grid place-items-center shadow transition"
+            >
+              <X size={10} />
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => inputRef.current?.click()}
+            className="h-20 w-20 rounded-2xl border-2 border-dashed border-black/15 flex flex-col items-center justify-center gap-1 cursor-pointer hover:border-[#0B74B0]/40 hover:bg-[#EBF4F9]/60 transition shrink-0"
+          >
+            <ImageIcon size={18} className="text-[#0E2A38]/25" />
+            <span className="text-[9px] text-[#0E2A38]/30 font-semibold uppercase tracking-wide">Upload</span>
+          </button>
+        )}
+        <div className="min-w-0">
+          <button
+            type="button"
+            onClick={() => inputRef.current?.click()}
+            className="inline-flex items-center gap-1.5 h-8 px-3 rounded-xl border border-black/10 text-xs font-medium text-[#0B74B0] hover:bg-[#EBF4F9] transition"
+          >
+            <Upload size={12} /> {value ? "Change photo" : "Choose file"}
+          </button>
+          <p className="text-[10px] text-[#0E2A38]/35 mt-1.5">JPG, PNG or WebP · max 3 MB</p>
+        </div>
+        <input ref={inputRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFile} className="hidden" />
+      </div>
+    </div>
+  );
+}
+
 function SaveCancel({ onCancel, saving }: { onCancel: () => void; saving: boolean }) {
   return (
     <div className="flex gap-3 justify-end pt-2">
@@ -361,7 +414,7 @@ function JobsTab({ jobs, reload }: { jobs: Job[]; reload: () => void }) {
 }
 
 // ── testimonials tab ──────────────────────────────────────────────────────────
-const EMPTY_TEST: Omit<Testimonial, "id" | "createdAt"> = { quote: "", name: "", title: "", metric: "", metricLabel: "", active: true };
+const EMPTY_TEST: Omit<Testimonial, "id" | "createdAt"> = { quote: "", name: "", title: "", metric: "", metricLabel: "", photo: "", active: true };
 
 function TestimonialsTab({ testimonials, reload }: { testimonials: Testimonial[]; reload: () => void }) {
   const [modal, setModal] = useState<null | "add" | "edit">(null);
@@ -371,7 +424,7 @@ function TestimonialsTab({ testimonials, reload }: { testimonials: Testimonial[]
   const [saving, setSaving] = useState(false);
 
   function openAdd() { setForm({ ...EMPTY_TEST }); setEditing(null); setModal("add"); }
-  function openEdit(t: Testimonial) { setForm({ quote: t.quote, name: t.name, title: t.title, metric: t.metric, metricLabel: t.metricLabel, active: t.active }); setEditing(t); setModal("edit"); }
+  function openEdit(t: Testimonial) { setForm({ quote: t.quote, name: t.name, title: t.title, metric: t.metric, metricLabel: t.metricLabel, photo: t.photo || "", active: t.active }); setEditing(t); setModal("edit"); }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -415,9 +468,17 @@ function TestimonialsTab({ testimonials, reload }: { testimonials: Testimonial[]
             </div>
             <div className="text-[10px] font-semibold text-[#0E2A38]/40 uppercase tracking-wide mb-3">{t.metricLabel}</div>
             <p className="text-sm text-[#0E2A38]/60 mb-4 line-clamp-3">"{t.quote}"</p>
-            <div className="text-sm font-semibold text-[#0E2A38]">{t.name}</div>
-            <div className="text-xs text-[#0E2A38]/40">{t.title}</div>
-            <div className={cls("text-[10px] font-semibold mt-2 px-2 py-0.5 rounded-full inline-block", t.active ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-500")}>{t.active ? "Active" : "Hidden"}</div>
+            <div className="flex items-center gap-3 pt-3 border-t border-black/5">
+              {t.photo
+                ? <img src={t.photo} alt={t.name} className="h-9 w-9 rounded-full object-cover border border-black/10 shrink-0" />
+                : <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[#0B74B0] to-[#75479C] grid place-items-center text-white font-bold text-sm shrink-0">{t.name.charAt(0)}</div>
+              }
+              <div className="min-w-0">
+                <div className="text-sm font-semibold text-[#0E2A38] truncate">{t.name}</div>
+                <div className="text-xs text-[#0E2A38]/40 truncate">{t.title}</div>
+              </div>
+              <div className={cls("text-[10px] font-semibold ml-auto px-2 py-0.5 rounded-full shrink-0", t.active ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-500")}>{t.active ? "Active" : "Hidden"}</div>
+            </div>
           </div>
         ))}
         {testimonials.length === 0 && <div className="sm:col-span-2"><EmptyState label="No testimonials yet" sub="Add your first client review." /></div>}
@@ -432,6 +493,7 @@ function TestimonialsTab({ testimonials, reload }: { testimonials: Testimonial[]
               <Field label="Metric (headline)"><input className={inputCls} value={form.metric} onChange={(e) => f("metric", e.target.value)} placeholder="e.g. 48 hrs" /></Field>
               <Field label="Metric Label"><input className={inputCls} value={form.metricLabel} onChange={(e) => f("metricLabel", e.target.value)} placeholder="e.g. to first shortlist" /></Field>
             </div>
+            <ImageUpload value={form.photo || ""} onChange={(v) => f("photo", v)} label="Client Photo (optional)" />
             <Toggle value={form.active} onChange={(v) => f("active", v)} label="Show on website" />
             <SaveCancel onCancel={() => setModal(null)} saving={saving} />
           </form>
@@ -664,7 +726,7 @@ function AchievementsTab({ achievements, reload }: { achievements: Achievement[]
 }
 
 // ── team tab ──────────────────────────────────────────────────────────────────
-const EMPTY_MEMBER: Omit<TeamMember, "id" | "createdAt"> = { name: "", title: "", initials: "", bio: "", active: true };
+const EMPTY_MEMBER: Omit<TeamMember, "id" | "createdAt"> = { name: "", title: "", initials: "", bio: "", photo: "", active: true };
 
 function TeamTab({ team, reload }: { team: TeamMember[]; reload: () => void }) {
   const [modal, setModal] = useState<null | "add" | "edit">(null);
@@ -674,7 +736,7 @@ function TeamTab({ team, reload }: { team: TeamMember[]; reload: () => void }) {
   const [saving, setSaving] = useState(false);
 
   function openAdd() { setForm({ ...EMPTY_MEMBER }); setEditing(null); setModal("add"); }
-  function openEdit(m: TeamMember) { setForm({ name: m.name, title: m.title, initials: m.initials, bio: m.bio, active: m.active }); setEditing(m); setModal("edit"); }
+  function openEdit(m: TeamMember) { setForm({ name: m.name, title: m.title, initials: m.initials, bio: m.bio, photo: m.photo || "", active: m.active }); setEditing(m); setModal("edit"); }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -709,9 +771,10 @@ function TeamTab({ team, reload }: { team: TeamMember[]; reload: () => void }) {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {team.map((m) => (
           <div key={m.id} className="bg-white rounded-2xl border border-black/5 shadow-sm p-5 text-center">
-            <div className="h-16 w-16 rounded-2xl bg-[#0E2A38] text-[#0B74B0] grid place-items-center text-xl font-bold mx-auto mb-4">
-              {m.initials}
-            </div>
+            {m.photo
+              ? <img src={m.photo} alt={m.name} className="h-16 w-16 rounded-2xl object-cover mx-auto mb-4 border border-black/10" />
+              : <div className="h-16 w-16 rounded-2xl bg-[#0E2A38] text-[#0B74B0] grid place-items-center text-xl font-bold mx-auto mb-4">{m.initials}</div>
+            }
             <div className="font-semibold text-[#0E2A38] mb-0.5">{m.name}</div>
             <div className="text-xs text-[#0B74B0] font-semibold uppercase tracking-wide mb-3">{m.title}</div>
             <p className="text-xs text-[#0E2A38]/55 line-clamp-2 mb-3">{m.bio}</p>
@@ -727,10 +790,11 @@ function TeamTab({ team, reload }: { team: TeamMember[]; reload: () => void }) {
       {modal && (
         <Modal title={modal === "add" ? "Add Team Member" : "Edit Team Member"} onClose={() => setModal(null)}>
           <form onSubmit={handleSubmit} className="space-y-4">
+            <ImageUpload value={form.photo || ""} onChange={(v) => f("photo", v)} label="Profile Photo (optional)" />
             <Field label="Full Name"><input className={inputCls} value={form.name} onChange={(e) => f("name", e.target.value)} placeholder="e.g. Jane Smith" required /></Field>
             <div className="grid grid-cols-2 gap-4">
               <Field label="Job Title"><input className={inputCls} value={form.title} onChange={(e) => f("title", e.target.value)} placeholder="e.g. VP of Sales" /></Field>
-              <Field label="Initials (2 chars)"><input className={inputCls} value={form.initials} onChange={(e) => f("initials", e.target.value.toUpperCase().slice(0, 2))} placeholder="e.g. JS" maxLength={2} /></Field>
+              <Field label="Initials (fallback)"><input className={inputCls} value={form.initials} onChange={(e) => f("initials", e.target.value.toUpperCase().slice(0, 2))} placeholder="e.g. JS" maxLength={2} /></Field>
             </div>
             <Field label="Bio"><textarea className={textareaCls} rows={3} value={form.bio} onChange={(e) => f("bio", e.target.value)} placeholder="Short bio for this team member..." /></Field>
             <Toggle value={form.active} onChange={(v) => f("active", v)} label="Show on website" />

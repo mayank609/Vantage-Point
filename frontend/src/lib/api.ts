@@ -90,6 +90,7 @@ export interface TeamMember {
   title: string;
   initials: string;
   bio: string;
+  photo?: string;
   active: boolean;
 }
 
@@ -113,6 +114,7 @@ export interface Testimonial {
   title: string;
   metric: string;
   metricLabel: string;
+  photo?: string;
   active: boolean;
 }
 

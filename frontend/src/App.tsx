@@ -1,5 +1,7 @@
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useLenis } from "lenis/react";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
@@ -14,9 +16,23 @@ import Admin from "@/pages/Admin";
 import ForCandidates from "@/pages/ForCandidates";
 import ForCompanies from "@/pages/ForCompanies";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  const lenis = useLenis();
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, lenis]);
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

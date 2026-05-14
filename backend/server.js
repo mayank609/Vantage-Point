@@ -19,7 +19,7 @@ app.use(helmet({
   contentSecurityPolicy: false,
 }));
 app.use(cors());
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "10mb" }));
 
 // ── rate limiting ─────────────────────────────────────────────────────────────
 const globalLimiter = rateLimit({
@@ -74,11 +74,11 @@ const jsonOpts = {
 };
 
 const JobSchema = new mongoose.Schema({ title: { type: String, required: true }, department: { type: String, default: "" }, location: { type: String, default: "" }, type: { type: String, default: "Full-Time" }, description: { type: String, default: "" }, requirements: { type: String, default: "" }, active: { type: Boolean, default: true } }, jsonOpts);
-const TestimonialSchema = new mongoose.Schema({ quote: { type: String, default: "" }, name: { type: String, default: "" }, title: { type: String, default: "" }, metric: { type: String, default: "" }, metricLabel: { type: String, default: "" }, active: { type: Boolean, default: true } }, jsonOpts);
+const TestimonialSchema = new mongoose.Schema({ quote: { type: String, default: "" }, name: { type: String, default: "" }, title: { type: String, default: "" }, metric: { type: String, default: "" }, metricLabel: { type: String, default: "" }, photo: { type: String, default: "" }, active: { type: Boolean, default: true } }, jsonOpts);
 const ContactSchema = new mongoose.Schema({ firstName: { type: String, default: "" }, lastName: { type: String, default: "" }, email: { type: String, default: "" }, phone: { type: String, default: "" }, company: { type: String, default: "" }, service: { type: String, default: "" }, message: { type: String, default: "" }, read: { type: Boolean, default: false } }, jsonOpts);
 const ServiceSchema = new mongoose.Schema({ name: { type: String, default: "" }, category: { type: String, default: "" }, description: { type: String, default: "" }, active: { type: Boolean, default: true } }, jsonOpts);
 const AchievementSchema = new mongoose.Schema({ title: { type: String, default: "" }, value: { type: String, default: "" }, description: { type: String, default: "" }, active: { type: Boolean, default: true } }, jsonOpts);
-const TeamMemberSchema = new mongoose.Schema({ name: { type: String, default: "" }, title: { type: String, default: "" }, initials: { type: String, default: "" }, bio: { type: String, default: "" }, active: { type: Boolean, default: true } }, jsonOpts);
+const TeamMemberSchema = new mongoose.Schema({ name: { type: String, default: "" }, title: { type: String, default: "" }, initials: { type: String, default: "" }, bio: { type: String, default: "" }, photo: { type: String, default: "" }, active: { type: Boolean, default: true } }, jsonOpts);
 
 const Job = mongoose.model("Job", JobSchema);
 const Testimonial = mongoose.model("Testimonial", TestimonialSchema);
