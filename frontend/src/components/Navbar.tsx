@@ -24,7 +24,6 @@ const Navbar: React.FC = () => {
     { label: "Legal Staffing", to: "/legal-staffing" },
     { label: "Cloud Migration", to: "/cloud-migration" },
     { label: "Managed Services", to: "/managed-services" },
-    { label: "Finpay Solutions", to: "/finpay" },
     { label: "Professional Services", to: "/services" },
     { label: "Oracle Solutions", to: "/services" },
     { label: "Workday HCM", to: "/services" },

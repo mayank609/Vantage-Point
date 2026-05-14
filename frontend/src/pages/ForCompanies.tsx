@@ -59,12 +59,12 @@ const ForCompanies: React.FC = () => {
           {/* Left: Text */}
           <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
             <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">For Business Leaders & Hiring Teams</motion.div>
-            <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.05] mb-6">
+            <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.05] mb-6">
               Build Your Dream Team.
               <br />
               Scale Your Technology.
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8 max-w-md">
+            <motion.p variants={fadeUp} className="text-[#0E2A38]/65 text-base leading-relaxed mb-8 max-w-md">
               Stop wasting time on bad hires and unreliable IT vendors. Vantage Point delivers top talent
               and enterprise-grade technology solutions — fast.
             </motion.p>
@@ -123,7 +123,7 @@ const ForCompanies: React.FC = () => {
             className="text-center mb-12"
           >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Services</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               Everything Your Business Needs
             </h2>
           </motion.div>
@@ -145,7 +145,7 @@ const ForCompanies: React.FC = () => {
                   <o.icon size={20} />
                 </div>
                 <h3 className="font-semibold text-[#0E2A38] text-lg mb-2">{o.title}</h3>
-                <p className="text-[#0E2A38]/60 text-sm leading-relaxed mb-5">{o.desc}</p>
+                <p className="text-[#0E2A38]/60 text-base leading-relaxed mb-5">{o.desc}</p>
                 <ul className="space-y-2">
                   {o.items.map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-[#0E2A38]/70">
@@ -172,7 +172,7 @@ const ForCompanies: React.FC = () => {
                 viewport={viewportOnce}
               >
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Process</div>
-                <h2 className="font-[Manrope] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-10 max-w-xl">How It Works</h2>
+                <h2 className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-10 max-w-xl">How It Works</h2>
               </motion.div>
               <motion.div
                 initial="hidden"
@@ -210,7 +210,7 @@ const ForCompanies: React.FC = () => {
             className="text-center mb-12"
           >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Our Guarantees</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">We Back Our Work</h2>
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">We Back Our Work</h2>
           </motion.div>
           <motion.div
             initial="hidden"
@@ -230,7 +230,7 @@ const ForCompanies: React.FC = () => {
                   <g.icon size={20} />
                 </div>
                 <h4 className="font-semibold text-[#0E2A38] text-lg mb-2">{g.title}</h4>
-                <p className="text-[#0E2A38]/60 text-sm leading-relaxed">{g.desc}</p>
+                <p className="text-[#0E2A38]/60 text-base leading-relaxed">{g.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -248,7 +248,7 @@ const ForCompanies: React.FC = () => {
             className="text-center mb-12"
           >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Client Results</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">Numbers Don't Lie</h2>
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">Numbers Don't Lie</h2>
           </motion.div>
           <motion.div
             initial="hidden"
@@ -269,7 +269,7 @@ const ForCompanies: React.FC = () => {
                 <div className="flex gap-0.5 mb-4">
                   {[...Array(5)].map((_, i) => <Star key={i} size={13} className="text-[#0B74B0] fill-[#0B74B0]" />)}
                 </div>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">"{t.quote}"</p>
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-5">"{t.quote}"</p>
                 <div>
                   <div className="font-semibold text-[#0E2A38] text-sm">{t.name}</div>
                   <div className="text-[#0E2A38]/40 text-xs mt-0.5">{t.title}</div>

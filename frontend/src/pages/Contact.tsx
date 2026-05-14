@@ -93,7 +93,7 @@ const Contact: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-6 border border-white/10">
             Direct Access
           </div>
-          <h1 className="font-[Manrope] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[64px] leading-[1.05] mb-6">
+          <h1 className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.05] mb-6">
             Let's Start a <span className="text-[#0B74B0]">Conversation</span>.
           </h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto leading-relaxed text-sm">
@@ -111,7 +111,7 @@ const Contact: React.FC = () => {
             <div className="lg:col-span-2 space-y-6">
               <div className="rounded-3xl bg-white border border-black/10 shadow-sm p-6 lg:p-8">
                 <h2 className="font-[Manrope] font-semibold text-[#0E2A38] text-3xl sm:text-4xl mb-4 tracking-tight">Book a Free Call</h2>
-                <p className="text-[#0E2A38]/70 text-sm leading-relaxed mb-6">
+                <p className="text-[#0E2A38]/70 text-base leading-relaxed mb-6">
                   Fill out the form and a specialist will reach out within 1 business day to schedule your free 30-minute strategy session.
                 </p>
                 <ul className="space-y-3">
@@ -234,7 +234,7 @@ const Contact: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="text-center mb-14">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Global Presence</div>
-            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">Visit Our <span className="text-[#0B74B0]">Offices</span></h2>
+            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">Visit Our <span className="text-[#0B74B0]">Offices</span></h2>
             <p className="mt-4 text-[#0E2A38]/70 text-sm max-w-3xl mx-auto leading-relaxed">Select a location to view details and get directions to our regional headquarters.</p>
           </div>
 
@@ -260,7 +260,7 @@ const Contact: React.FC = () => {
                     </div>
                   </div>
                   <div className="font-semibold text-lg mb-1 tracking-tight">{loc.city}</div>
-                  <div className={`text-sm leading-relaxed ${activeLoc === i ? "text-white/70" : "text-[#0E2A38]/60"}`}>
+                  <div className={`text-base leading-relaxed ${activeLoc === i ? "text-white/70" : "text-[#0E2A38]/60"}`}>
                     {loc.address}
                   </div>
                 </button>
@@ -315,7 +315,7 @@ const Contact: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="text-center mb-16">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Coverage</div>
-            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">Serving the Entire <span className="text-[#0B74B0]">US Market</span></h2>
+            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">Serving the Entire <span className="text-[#0B74B0]">US Market</span></h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[

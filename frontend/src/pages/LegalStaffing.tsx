@@ -37,12 +37,12 @@ const LegalStaffing: React.FC = () => {
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0E2A38] via-[#0E2A38]/60 to-transparent pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10 text-center text-white">
           <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Legal Staffing</div>
-          <h1 className="font-[Manrope] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[56px] leading-[1.05]">
+          <h1 className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.05]">
             Embark on a customized, comprehensive
             <br />
             legal staffing solution tailored to your firm's distinct needs.
           </h1>
-          <p className="mt-6 text-white/60 max-w-2xl mx-auto text-sm leading-relaxed">
+          <p className="mt-6 text-white/60 max-w-2xl mx-auto text-base leading-relaxed">
             Discover a pool of attorneys, paralegals, and specialized legal personnel ready to bolster your practice or legal department. Connect with fresh legal talent and opportunities right at your fingertips.
           </p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-1.5 rounded-full bg-[#0B74B0] hover:bg-[#096396] text-white px-6 py-2.5 text-sm font-medium transition shadow-sm">
@@ -58,16 +58,16 @@ const LegalStaffing: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Our Philosophy</div>
-                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-6">
+                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-6">
                   Merging Touch with Technology
                 </h2>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-5">
                   At Vantage Point Consulting, we shun a one-size-fits-all mentality! We invest time in comprehending the distinctive requirements and nuances of our clients and candidates from the outset, crafting exceptional experiences for every individual, every time.
                 </p>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-5">
                   Merging touch with technology, our seasoned recruiters and attorney search teams utilize personal relationships cultivated over years in the legal industry, coupled with our proprietary tools, to simplify the process of aligning the perfect individual with the right position.
                 </p>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-8">
                   Crucially, we operate as a values-driven firm, steadfastly upholding honesty, ethics, and integrity as the guiding principles influencing our behaviors and actions at every juncture.
                 </p>
                 <ul className="space-y-3">
@@ -85,7 +85,7 @@ const LegalStaffing: React.FC = () => {
                   {differentiators.map((d) => (
                     <div key={d.title} className="rounded-2xl bg-[#EBF4F9] p-5">
                       <h4 className="font-semibold text-[#0E2A38] mb-1.5">{d.title}</h4>
-                      <p className="text-[#0E2A38]/60 text-sm leading-relaxed">{d.desc}</p>
+                      <p className="text-[#0E2A38]/60 text-base leading-relaxed">{d.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -100,7 +100,7 @@ const LegalStaffing: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="text-center mb-12">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Areas We Help Place Candidates</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               Specialized Legal Talent
             </h2>
           </div>

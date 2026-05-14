@@ -59,10 +59,10 @@ const ForCandidates: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.13)}>
               <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">For Tech, Finance, Legal & Executive Professionals</motion.div>
-              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] mb-6">
+              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.08] mb-6">
                 Your Next Great Role Is One Conversation Away.
               </motion.h1>
-              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
+              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-base leading-relaxed mb-8">
                 Access exclusive high-paying roles at top US companies. Our dedicated recruiters match your skills with opportunities that actually move your career forward.
               </motion.p>
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
@@ -108,7 +108,7 @@ const ForCandidates: React.FC = () => {
           >
             <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce} className="text-center mb-12">
               <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Why Work With Us</div>
-              <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1]">
+              <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1]">
                 The Vantage Point Candidate Experience
               </h2>
             </motion.div>
@@ -139,7 +139,7 @@ const ForCandidates: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce} className="text-center mb-10">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Current Openings</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">Featured Roles</h2>
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">Featured Roles</h2>
           </motion.div>
 
           <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -194,7 +194,7 @@ const ForCandidates: React.FC = () => {
             <div className="relative">
               <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce}>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The Process</div>
-                <h2 className="font-[Manrope] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-10 max-w-xl">How We Place You</h2>
+                <h2 className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-10 max-w-xl">How We Place You</h2>
               </motion.div>
               <motion.div
                 initial="hidden" whileInView="show" variants={stagger(0.1, 0.14)} viewport={viewportOnce}
@@ -222,7 +222,7 @@ const ForCandidates: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce} className="text-center mb-12">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Success Stories</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">Candidates Love Working With Us</h2>
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">Candidates Love Working With Us</h2>
           </motion.div>
           <motion.div
             initial="hidden" whileInView="show" variants={stagger(0.08, 0.14)} viewport={viewportOnce}
@@ -237,7 +237,7 @@ const ForCandidates: React.FC = () => {
                 <div className="flex gap-0.5 mb-4">
                   {[...Array(5)].map((_, i) => <Star key={i} size={13} className="text-[#0B74B0] fill-[#0B74B0]" />)}
                 </div>
-                <p className="text-[#0E2A38]/70 text-sm leading-relaxed mb-6">"{t.quote}"</p>
+                <p className="text-[#0E2A38]/70 text-base leading-relaxed mb-6">"{t.quote}"</p>
                 <div>
                   <div className="font-semibold text-[#0E2A38] text-sm">{t.name}</div>
                   <div className="text-[#0E2A38]/40 text-xs mt-0.5">{t.title}</div>

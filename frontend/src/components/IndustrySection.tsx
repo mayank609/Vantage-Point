@@ -82,10 +82,10 @@ const IndustrySection: React.FC = () => {
           className="text-center mb-14"
         >
           <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Industries We Serve</div>
-          <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.1]">
+          <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1]">
             Sector <span className="text-gradient-animated">Specialization</span>
           </h2>
-          <p className="mt-4 text-sm text-[#0E2A38]/60 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base text-[#0E2A38]/60 max-w-3xl mx-auto leading-relaxed">
             We deliver tailored enterprise solutions across a diverse range of sectors, helping businesses navigate their unique digital challenges.
           </p>
         </motion.div>

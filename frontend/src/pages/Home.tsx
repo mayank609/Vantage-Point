@@ -4,7 +4,7 @@ import { motion, useInView, useMotionValue, useTransform, animate as animateValu
 import {
   ArrowUpRight, ArrowRight, Users, Cloud, Settings,
   Star, Repeat, Building2, ShieldCheck, Quote,
-  TrendingUp, Globe, CheckCircle, Zap, Sparkles, Rocket, Award, Wallet,
+  TrendingUp, Globe, CheckCircle, Zap, Sparkles, Rocket, Award,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -36,22 +36,22 @@ function AnimatedCounter({ target, suffix = "", duration = 2 }: { target: number
 const Home: React.FC = () => {
   const pillars = [
     {
-      icon: Building2,
-      title: "For Companies",
-      desc: "Hire top 1% tech, finance, and legal talent. Pre-vetted shortlists delivered in 48–72 hours to help your business scale faster.",
-      to: "/companies",
-    },
-    {
       icon: Users,
-      title: "For Candidates",
-      desc: "Access exclusive high-paying roles at top US companies. Our dedicated recruiters match your skills with opportunities that move your career forward.",
-      to: "/candidates",
+      title: "Our Solution",
+      desc: "Our team provides the Professional Services, AI, and Migration solutions you need based on your vision. We empower your business with top-notch expertise through a customized approach.",
+      to: "/services",
     },
     {
-      icon: Wallet,
-      title: "Finpay Solutions",
-      desc: "Modernize your payment infrastructure with our automated fintech solutions. Secure, scalable, and designed for the future of finance.",
-      to: "/finpay",
+      icon: Cloud,
+      title: "We Connect The Dots",
+      desc: "We listen to your strategic goals, allowing us to implement enterprise solutions like Oracle and Workday efficiently and in a timely manner.",
+      to: "/services",
+    },
+    {
+      icon: Settings,
+      title: "Our Experience",
+      desc: "We provide clients with services throughout the United States. With years of experience managing complex IT projects, we have the knowledge and commitment to give you the adVantage you're looking for.",
+      to: "/services",
     },
   ];
 
@@ -169,16 +169,16 @@ const Home: React.FC = () => {
                 <span className="text-[#0B74B0] text-xs font-bold tracking-[0.18em] uppercase">An Orpine Company · Est. 2008</span>
               </motion.div>
 
-              {/* Giant headline */}
+              {/* Headline */}
               <motion.div variants={fadeUp} className="mb-6">
-                <h1 className="font-[Manrope] font-black tracking-tight leading-[1.0]">
-                  <span className="block text-5xl sm:text-6xl lg:text-[76px] text-[#0E2A38]">Your</span>
-                  <span className="block text-6xl sm:text-7xl lg:text-[88px] text-gradient-animated">Vantage</span>
-                  <span className="block text-5xl sm:text-6xl lg:text-[76px] text-[#0E2A38]">Point.</span>
+                <h1 className="font-[Manrope] font-black tracking-tight leading-[1.05]">
+                  <span className="block text-2xl sm:text-3xl lg:text-4xl text-[#0E2A38]">Your</span>
+                  <span className="block text-4xl sm:text-5xl lg:text-6xl text-gradient-animated">Vantage</span>
+                  <span className="block text-2xl sm:text-3xl lg:text-4xl text-[#0E2A38]">Point.</span>
                 </h1>
                 <div className="mt-4 flex items-center gap-3">
-                  <div className="h-[2px] w-14 rounded-full" style={{ background: "linear-gradient(90deg, #0B74B0, #75479C)" }} />
-                  <span className="text-[#0E2A38]/35 text-2xl sm:text-3xl font-semibold">Our Solution.</span>
+                  <div className="h-[2px] w-12 rounded-full" style={{ background: "linear-gradient(90deg, #0B74B0, #75479C)" }} />
+                  <span className="text-[#0E2A38]/35 text-xl sm:text-2xl font-semibold">Our Solution.</span>
                 </div>
               </motion.div>
 
@@ -466,7 +466,7 @@ const Home: React.FC = () => {
           >
             <div className="text-center mb-20">
               <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Your Vantage Point</div>
-              <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+              <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
                 How We Deliver Value
               </h2>
             </div>
@@ -519,7 +519,7 @@ const Home: React.FC = () => {
             <div aria-hidden className="absolute -bottom-32 -left-16 w-72 h-72 bg-[#75479C]/15 rounded-full blur-3xl pointer-events-none" />
             <div className="relative">
               <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Why Vantage Point</div>
-              <h2 className="font-[Manrope] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.1] mb-10 max-w-4xl">
+              <h2 className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-10 max-w-4xl">
                 Recognized as a{" "}
                 <span className="text-gradient-animated">Top Player</span>{" "}
                 in IT Solutions
@@ -538,7 +538,7 @@ const Home: React.FC = () => {
                       <w.icon size={28} strokeWidth={2.5} />
                     </div>
                     <h4 className="font-semibold text-lg mb-2.5 tracking-tight">{w.title}</h4>
-                    <p className="text-white/60 text-sm leading-relaxed">{w.desc}</p>
+                    <p className="text-white/60 text-base leading-relaxed">{w.desc}</p>
                   </motion.div>
                 ))}
               </div>
@@ -561,7 +561,7 @@ const Home: React.FC = () => {
             className="text-center mb-16"
           >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Endorsements</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               What Our Clients Say
             </h2>
             <p className="mt-4 text-sm text-[#0E2A38]/55 max-w-2xl mx-auto leading-relaxed">
@@ -586,7 +586,7 @@ const Home: React.FC = () => {
                     <Star key={j} size={14} className="text-[#0B74B0] fill-[#0B74B0]" />
                   ))}
                 </div>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8 italic">"{t.quote}"</p>
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-8 italic">"{t.quote}"</p>
                 <div className="flex items-center gap-3.5 pt-6 border-t border-black/[0.06]">
                   <div className="h-11 w-11 rounded-full bg-gradient-to-br from-[#0B74B0] to-[#75479C] grid place-items-center text-white font-black text-base shadow-md shrink-0">
                     {t.name.charAt(0)}
@@ -631,10 +631,10 @@ const Home: React.FC = () => {
             <div className="relative grid lg:grid-cols-2 gap-12 items-center text-left">
               <div>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Got a Project?</div>
-                <h3 className="font-[Manrope] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.1]">
+                <h3 className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1]">
                   Got a project or a<br />partnership in mind?
                 </h3>
-                <p className="mt-6 text-white/60 text-sm leading-relaxed max-w-sm">
+                <p className="mt-6 text-white/60 text-base leading-relaxed max-w-sm">
                   Our consultants and architects work to match your enterprise technology needs. Let's talk about how we can give you the adVantage.
                 </p>
               </div>

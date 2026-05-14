@@ -49,7 +49,7 @@ const About: React.FC = () => {
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-6 border border-white/10">
             Corporate Profile
           </motion.div>
-          <motion.h1 variants={fadeUp} className="font-[Manrope] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[64px] leading-[1.05] mb-6">
+          <motion.h1 variants={fadeUp} className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.05] mb-6">
             Your Vantage <span className="text-[#0B74B0]">Point</span>.
           </motion.h1>
           <motion.p variants={fadeUp} className="mt-4 text-white/70 max-w-2xl mx-auto leading-relaxed text-sm">
@@ -68,10 +68,10 @@ const About: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
               <motion.div initial="hidden" whileInView="show" variants={slideRight} viewport={viewportOnce}>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Who We Are</div>
-                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.1] mb-6">
+                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-6">
                   Strategic Consulting & <span className="text-[#0B74B0]">Solutions</span>
                 </h2>
-                <div className="space-y-5 text-[#0E2A38]/70 text-sm leading-relaxed">
+                <div className="space-y-5 text-[#0E2A38]/70 text-base leading-relaxed">
                   <p>Vantage Point Consulting (a GoHire Tech Company) is a leading strategic consulting and professional services company that provides enterprise IT solutions for clients as they seek to transform and execute strategies that drive exceptional outcomes.</p>
                   <p>We are recognized as a top player in global Professional Services, Oracle & Workday Implementations, Cloud Migration, and AI Integrations. Our consultants and architects work to match our clients' technology needs.</p>
                 </div>
@@ -99,7 +99,7 @@ const About: React.FC = () => {
                 ].map((card) => (
                   <motion.div key={card.label} variants={slideLeft} className="rounded-2xl bg-[#EBF4F9] p-6 border border-[#0B74B0]/5">
                     <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">{card.label}</div>
-                    <p className="text-[#0E2A38]/70 text-sm leading-relaxed">{card.text}</p>
+                    <p className="text-[#0E2A38]/70 text-base leading-relaxed">{card.text}</p>
                   </motion.div>
                 ))}
                 <motion.div variants={slideLeft} className="rounded-2xl bg-[#0E2A38] p-6 text-white shadow-sm">
@@ -120,7 +120,7 @@ const About: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce} className="text-center mb-20">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Our Team</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               The People Behind Vantage Point
             </h2>
           </motion.div>
@@ -140,7 +140,7 @@ const About: React.FC = () => {
                 </div>
                 <div className="font-semibold text-[#0E2A38] text-lg mb-1.5">{member.name}</div>
                 <div className="text-[#0B74B0] text-xs font-semibold mb-4 tracking-wide uppercase">{member.title}</div>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed">{member.bio}</p>
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed">{member.bio}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -156,10 +156,10 @@ const About: React.FC = () => {
           >
             <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce} className="text-center mb-16">
               <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Industries</div>
-              <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+              <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
                 We've Helped Innovative <span className="text-[#0B74B0]">Companies</span>
               </h2>
-              <p className="mt-4 text-[#0E2A38]/70 max-w-3xl mx-auto text-sm leading-relaxed">
+              <p className="mt-4 text-[#0E2A38]/70 max-w-3xl mx-auto text-base leading-relaxed">
                 We provide our clients with services throughout the United States across a wide range of industries.
               </p>
             </motion.div>
@@ -186,7 +186,7 @@ const About: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <motion.div initial="hidden" whileInView="show" variants={fadeUp} viewport={viewportOnce} className="text-center mb-20">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Endorsements</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               Trusted by Industry Leaders
             </h2>
           </motion.div>
@@ -203,7 +203,7 @@ const About: React.FC = () => {
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
                 className="rounded-3xl bg-[#EBF4F9] p-8 border border-[#0B74B0]/10 shadow-sm"
               >
-                <p className="text-[#0E2A38]/70 text-sm leading-relaxed mb-6 italic">"{e.quote}"</p>
+                <p className="text-[#0E2A38]/70 text-base leading-relaxed mb-6 italic">"{e.quote}"</p>
                 <div className="pt-6 border-t border-black/5">
                   <div className="font-semibold text-[#0E2A38] text-base">{e.name}</div>
                   <div className="text-[#0B74B0] text-xs font-semibold mt-1 uppercase tracking-wide">{e.company}</div>

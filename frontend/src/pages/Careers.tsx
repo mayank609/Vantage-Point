@@ -96,7 +96,7 @@ const Careers: React.FC = () => {
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0E2A38] via-[#0E2A38]/60 to-transparent pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10 text-center text-white">
           <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Careers</div>
-          <h1 className="font-[Manrope] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[64px] leading-[1.05]">
+          <h1 className="font-[Manrope] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.05]">
             We Work with the Best.
           </h1>
           <p className="mt-6 text-white/60 max-w-2xl mx-auto leading-relaxed text-base">
@@ -120,16 +120,16 @@ const Careers: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Why Choose Vantage Point</div>
-                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-6">
+                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-6">
                   Your Career, Our Commitment
                 </h2>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-5">
                   At Vantage Point Consulting, we listen to your goals and match you with opportunities that align with your career aspirations. We maintain access to diverse talent pools for both specialized and high-demand positions.
                 </p>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-5">
                   We work with top-tier employers who share our commitment to efficient hiring processes that prioritize the candidate experience. Whether you're seeking a permanent role or a contract position, we're here to guide you every step of the way.
                 </p>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-8">
                   Our team brings deep industry experience across IT, Finance, Legal, Engineering, and Executive leadership — we understand your field and can match you with positions that are the right fit.
                 </p>
                 <ul className="space-y-3">
@@ -150,7 +150,7 @@ const Careers: React.FC = () => {
                 {benefits.map((b) => (
                   <div key={b.title} className="rounded-2xl bg-[#EBF4F9] p-5">
                     <h4 className="font-semibold text-[#0E2A38] mb-1.5">{b.title}</h4>
-                    <p className="text-[#0E2A38]/60 text-sm leading-relaxed">{b.desc}</p>
+                    <p className="text-[#0E2A38]/60 text-base leading-relaxed">{b.desc}</p>
                   </div>
                 ))}
               </div>
@@ -164,7 +164,7 @@ const Careers: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="mb-10">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Open Positions</div>
-            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               Current Jobs
             </h2>
             <p className="text-[#0E2A38]/70 text-sm mt-3 max-w-2xl">
@@ -240,7 +240,7 @@ const Careers: React.FC = () => {
 
           <div className="text-center mb-12">
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Practice Areas</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               We Place Talent Across All Disciplines
             </h2>
           </div>

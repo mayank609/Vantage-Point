@@ -34,10 +34,10 @@ const ManagedServices: React.FC = () => {
             {/* Left: Text */}
             <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
               <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Managed Services</motion.div>
-              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] mb-6">
+              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.05] mb-6">
                 Full-Service Managed Service Provider
               </motion.h1>
-              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
+              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-base leading-relaxed mb-8">
                 Vantage Point Consulting experts work on strategizing and building complete IT, network, application, infrastructure, and security solutions so you can confidently move your business forward.
               </motion.p>
               <motion.div variants={fadeUp}>
@@ -82,16 +82,16 @@ const ManagedServices: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <motion.div initial="hidden" whileInView="show" variants={slideRight} viewport={viewportOnce}>
                 <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Our Methodology</div>
-                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-6">
+                <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-6">
                   Appropriate Technology for Your Unique Requirements
                 </h2>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-5">
                   We understand that each customer has unique requirements. At the same time, we ensure that we offer the appropriate technology and service that aligns with your specific needs.
                 </p>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-5">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-5">
                   We assemble a skilled and knowledgeable team of individuals to support our clients. Through years of experience and lessons learned, we have established formal processes that minimize risk and ensure seamless transitions.
                 </p>
-                <p className="text-[#0E2A38]/65 text-sm leading-relaxed mb-8">
+                <p className="text-[#0E2A38]/65 text-base leading-relaxed mb-8">
                   We assess your needs and choose the best available technology that aligns with your specific requirements. We act as a powerhouse to your existing team and technology to ensure a smooth transition and effective coordination.
                 </p>
                 <ul className="space-y-3">
@@ -148,7 +148,7 @@ const ManagedServices: React.FC = () => {
             className="text-center mb-12"
           >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase">Capabilities</div>
-            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
               What We Manage
             </h2>
           </motion.div>
@@ -168,7 +168,7 @@ const ManagedServices: React.FC = () => {
               >
                 <CheckCircle size={16} className="text-[#0B74B0] mb-4" />
                 <h4 className="font-semibold text-[#0E2A38] mb-2">{c.title}</h4>
-                <p className="text-[#0E2A38]/60 text-sm leading-relaxed">{c.desc}</p>
+                <p className="text-[#0E2A38]/60 text-base leading-relaxed">{c.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -185,7 +185,7 @@ const ManagedServices: React.FC = () => {
             viewport={viewportOnce}
           >
             <div className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Industries Served</div>
-            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl mb-10">
+            <h2 className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl mb-10">
               From Aquaculture to Oil & Gas
             </h2>
           </motion.div>

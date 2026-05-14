@@ -60,7 +60,7 @@ const CoreServices: React.FC = () => {
             <span className="w-2 h-2 rounded-full bg-[#0B74B0] animate-pulse" />
             <span className="text-[#0B74B0] font-semibold text-xs tracking-[0.2em] uppercase">Our Expertise</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0E2A38] mb-4 leading-[1.1] tracking-tight font-[Manrope]">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#0E2A38] mb-4 leading-[1.1] tracking-tight font-[Manrope]">
             Our Core <span className="text-gradient-animated">Technology Services</span>
           </h2>
           <p className="text-sm text-[#0E2A38]/60 leading-relaxed">
@@ -107,7 +107,7 @@ const CoreServices: React.FC = () => {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-2xl lg:text-3xl font-semibold text-[#0E2A38] group-hover:text-[#0B74B0] transition-colors font-[Manrope] tracking-tight">
+                      <h3 className="text-xl lg:text-2xl font-semibold text-[#0E2A38] group-hover:text-[#0B74B0] transition-colors font-[Manrope] tracking-tight">
                         {service.title}
                       </h3>
 

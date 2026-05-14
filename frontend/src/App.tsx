@@ -11,7 +11,6 @@ import Careers from "@/pages/Careers";
 import CeoMessage from "@/pages/CeoMessage";
 import Contact from "@/pages/Contact";
 import Admin from "@/pages/Admin";
-import FinpayLanding from "@/pages/FinpayLanding";
 import ForCandidates from "@/pages/ForCandidates";
 import ForCompanies from "@/pages/ForCompanies";
 
@@ -30,7 +29,6 @@ function App() {
         <Route path="/ceo-message" element={<CeoMessage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/finpay" element={<FinpayLanding />} />
         <Route path="/candidates" element={<ForCandidates />} />
         <Route path="/companies" element={<ForCompanies />} />
       </Routes>

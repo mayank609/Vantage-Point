@@ -53,10 +53,10 @@ const Staffing: React.FC = () => {
             {/* Left: Text */}
             <motion.div initial="hidden" animate="show" variants={stagger(0.06, 0.12)}>
               <motion.div variants={fadeUp} className="text-[#0B74B0] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Staffing Services</motion.div>
-              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-[52px] leading-[1.08] mb-6">
+              <motion.h1 variants={fadeUp} className="font-[Manrope] text-[#0E2A38] font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.08] mb-6">
                 We help you fill exceptional roles that others find rather challenging.
               </motion.h1>
-              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-sm leading-relaxed mb-8">
+              <motion.p variants={fadeUp} className="text-[#0E2A38]/60 max-w-lg text-base leading-relaxed mb-8">
                 From IT engineers to C-suite executives — our personalized, consultative approach connects you with talent that drives real results.
               </motion.p>
               <motion.div variants={fadeUp}>
@@ -102,7 +102,7 @@ const Staffing: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
                   <div>
                     <h2 className="font-[Manrope] font-semibold text-[#0E2A38] text-2xl lg:text-3xl mb-4 tracking-tight">{div.title}</h2>
-                    <p className="text-[#0E2A38]/60 text-sm leading-relaxed mb-6">{div.desc}</p>
+                    <p className="text-[#0E2A38]/60 text-base leading-relaxed mb-6">{div.desc}</p>
                     <Link to="/contact" className="inline-flex items-center gap-1.5 text-[#0B74B0] text-sm font-medium hover:gap-2.5 transition-all">
                       Get started <ArrowUpRight size={14} />
                     </Link>

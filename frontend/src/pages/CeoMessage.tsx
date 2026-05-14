@@ -37,7 +37,7 @@ const CeoMessage: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-[#0B74B0] text-[10px] font-bold tracking-[0.2em] uppercase mb-6 border border-white/10">
             Leadership Perspective
           </div>
-          <h1 className="font-[Manrope] font-bold tracking-tight text-5xl sm:text-6xl lg:text-[72px] leading-[1] mb-8">
+          <h1 className="font-[Manrope] font-bold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1] mb-8">
             A Word from Our <span className="text-[#0B74B0]">Leadership</span>
           </h1>
           <p className="mt-6 text-white/50 max-w-2xl mx-auto text-lg sm:text-xl leading-relaxed font-medium">
@@ -67,7 +67,7 @@ const CeoMessage: React.FC = () => {
                   </div>
                   <div className="font-bold text-[#0E2A38] text-xl">Krish Subbiah</div>
                   <div className="text-[#0B74B0] text-xs font-bold mt-1 mb-4 tracking-wider uppercase">CEO and Partner</div>
-                  <p className="text-[#0E2A38]/70 text-sm leading-relaxed font-medium">
+                  <p className="text-[#0E2A38]/70 text-base leading-relaxed font-medium">
                     Leads Vantage Point Consulting's vision and strategic direction as CEO and Partner, driving growth across staffing, cloud, and IT solutions.
                   </p>
                 </div>
@@ -88,11 +88,11 @@ const CeoMessage: React.FC = () => {
               {/* Message Body */}
               <div className="lg:col-span-2">
                 <div className="text-[#0B74B0] text-xs font-bold tracking-[0.2em] uppercase mb-4">Q2 Market Update</div>
-                <h2 className="font-[Manrope] text-[#0E2A38] font-bold tracking-tight text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] mb-10">
+                <h2 className="font-[Manrope] text-[#0E2A38] font-bold tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-[1.1] mb-10">
                   Confident in the Strength of the Labor Market
                 </h2>
 
-                <div className="space-y-6 text-[#0E2A38] text-lg sm:text-xl font-medium leading-[1.6]">
+                <div className="space-y-6 text-[#0E2A38] text-base sm:text-lg font-medium leading-relaxed">
                   <p className="relative">
                     As we head into Q2, Vantage Point Consulting continues to support our clients and applicants with both hiring and career needs. Although facing market headwinds, we are confident the labor market is still strong and there are many exciting opportunities for both employers and professionals.
                   </p>
@@ -130,8 +130,8 @@ const CeoMessage: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="text-center mb-20">
             <div className="text-[#0B74B0] text-sm font-bold tracking-[0.3em] uppercase mb-4">Our Journey</div>
-            <h2 className="font-[Manrope] text-[#0E2A38] font-bold tracking-tighter text-4xl sm:text-5xl lg:text-6xl">Moments of Excellence</h2>
-            <p className="mt-6 text-[#0E2A38]/60 max-w-3xl mx-auto text-xl font-medium">
+            <h2 className="font-[Manrope] text-[#0E2A38] font-bold tracking-tighter text-2xl sm:text-3xl lg:text-4xl">Moments of Excellence</h2>
+            <p className="mt-6 text-[#0E2A38]/60 max-w-3xl mx-auto text-base font-medium">
               A glimpse into our milestones, global presence, and the recognition that drives us forward.
             </p>
           </div>
@@ -191,7 +191,7 @@ const CeoMessage: React.FC = () => {
 
             {/* Tile 4: Small Stat */}
             <div className="md:col-span-2 md:row-span-1 bg-[#EBF4F9] rounded-[32px] p-10 flex flex-col justify-center border border-[#0B74B0]/10 shadow-sm">
-              <div className="text-6xl font-bold text-[#0B74B0] mb-2 tracking-tighter">50+</div>
+              <div className="text-4xl font-bold text-[#0B74B0] mb-2 tracking-tighter">50+</div>
               <div className="text-[#0E2A38]/50 text-sm font-bold uppercase tracking-widest">Speaking Engagements Globally</div>
             </div>
 
@@ -236,7 +236,7 @@ const CeoMessage: React.FC = () => {
           <div className="relative overflow-hidden rounded-[40px] bg-[#0E2A38] text-white p-12 lg:p-20 text-center shadow-2xl">
             <div aria-hidden className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
             <div className="relative">
-              <h3 className="font-[Manrope] font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 tracking-tight">Ready to Work Together?</h3>
+              <h3 className="font-[Manrope] font-bold text-2xl sm:text-3xl lg:text-4xl mb-6 tracking-tight">Ready to Work Together?</h3>
               <p className="text-white/60 mb-10 text-lg sm:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
                 Whether you're hiring, seeking a new role, or exploring IT solutions — our team is here to help you navigate the future.
               </p>
